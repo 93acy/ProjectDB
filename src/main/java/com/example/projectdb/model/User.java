@@ -2,14 +2,10 @@ package com.example.projectdb.model;
 
 import com.sun.istack.NotNull;
 
-import java.util.Collection;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 @Entity
 public class User {
@@ -22,7 +18,7 @@ public class User {
 	private String password;
 	private String nric;
 	private String name;
-	private String race;
+	private String ethnicity;
 	private String dob;
 	private String nationality;
 	private String gender;
@@ -45,7 +41,7 @@ public class User {
 		this.password = password;
 		this.nric = nric;
 		this.name = name;
-		this.race = race;
+		this.ethnicity = race;
 		this.dob = dob;
 		this.nationality = nationality;
 		this.gender = gender;
@@ -95,12 +91,12 @@ public class User {
 		this.name = name;
 	}
 
-	public String getRace() {
-		return race;
+	public String getEthnicity() {
+		return ethnicity;
 	}
 
-	public void setRace(String race) {
-		this.race = race;
+	public void setEthnicity(String race) {
+		this.ethnicity = race;
 	}
 
 	public String getDob() {
