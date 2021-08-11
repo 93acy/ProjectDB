@@ -16,4 +16,7 @@ public interface HawkerListingRepository extends JpaRepository<HawkerListing, Lo
 	            + "LIKE %:keyword%")
 	    List<HawkerListing> findByKeyword(@Param("keyword") String keyword);
 
+	HawkerListing findHawkerListingById();
+
+
 }

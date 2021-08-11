@@ -10,5 +10,13 @@ public interface HawkerService {
 	public List<HawkerListing> findAll();
 
 	public List<HawkerListing> findByKeyword(String keyword);
+
+	public HawkerListing findHawkerListingById(Long id);
+
+	public HawkerListing addHawkerListing(HawkerListing hawkerlisting);
+
+	public HawkerListing updateHawkerListing(HawkerListing hawkerlisting);
+
+	public void deleteHawkerListing(Long id);
 	
 }

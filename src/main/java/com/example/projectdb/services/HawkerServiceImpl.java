@@ -23,6 +23,28 @@ public class HawkerServiceImpl implements HawkerService{
 		return hrepo.findByKeyword(keyword);
 	}
 
+	@Override
+	public HawkerListing findHawkerListingById(Long id) {
+		return hrepo.findHawkerListingById();
+	}
+
+	@Override
+	public HawkerListing addHawkerListing(HawkerListing hawkerlisting) {
+		return hrepo.save(hawkerlisting);
+	}
+
+	@Override
+	public HawkerListing updateHawkerListing(HawkerListing hawkerlisting) {
+		return hrepo.save(hawkerlisting);
+	}
+
+	@Override
+	public void deleteHawkerListing(Long id) {
+		hrepo.deleteById(id);
+		
+	}
+	
+
 
 
 }
