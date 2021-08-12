@@ -11,12 +11,12 @@ import com.example.projectdb.model.HawkerListing;
 public interface HawkerListingRepository extends JpaRepository<HawkerListing, Long> {
 
 	
-	 @Query("SELECT h FROM HawkerListing h WHERE "
-	            + "CONCAT(h.name,h.id)"
-	            + "LIKE %:keyword%")
-	    List<HawkerListing> findByKeyword(@Param("keyword") String keyword);
-
-	HawkerListing findHawkerListingById();
+//	 @Query("SELECT h FROM HawkerListing h WHERE "
+//	            + "CONCAT(h.name,h.id)"
+//	            + "LIKE %:keyword%")
+//	 List<HawkerListing> findByKeyword(@Param("keyword") String keyword);
+//
+//	HawkerListing findHawkerListingById();
 
 
 }

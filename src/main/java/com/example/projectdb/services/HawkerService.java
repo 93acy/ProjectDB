@@ -3,15 +3,17 @@ package com.example.projectdb.services;
 import java.util.List;
 
 import com.example.projectdb.model.HawkerListing;
+import org.springframework.stereotype.Component;
+
+
 
 public interface HawkerService {
-	
 
 	public List<HawkerListing> findAll();
 
-	public List<HawkerListing> findByKeyword(String keyword);
+//	public List<HawkerListing> findByKeyword(String keyword);
 
-	public HawkerListing findHawkerListingById(Long id);
+//	public HawkerListing findHawkerListingById(Long id);
 
 	public HawkerListing addHawkerListing(HawkerListing hawkerlisting);
 

@@ -3,6 +3,7 @@ package com.example.projectdb.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -19,12 +20,10 @@ import com.example.projectdb.model.HawkerListing;
 import com.example.projectdb.model.User;
 import com.example.projectdb.services.HawkerService;
 
-
-
 @RestController
 public class HawkerListingController {
 	
-	@Autowired 
+	@Autowired
 	private HawkerService hservice;
 	
 	
@@ -34,11 +33,11 @@ public class HawkerListingController {
         return new ResponseEntity<>(hawkerlistings, HttpStatus.OK);
 	}
 	
-	@GetMapping("/hawkerlisting/{id}") 
-    public ResponseEntity<HawkerListing> getHawkerListingById(@PathVariable("id") Long id){
-        HawkerListing hawkerlisting = hservice.findHawkerListingById(id);
-        return new ResponseEntity<>(hawkerlisting, HttpStatus.OK);
-	}
+//	@GetMapping("/hawkerlisting/{id}")
+//    public ResponseEntity<HawkerListing> getHawkerListingById(@PathVariable("id") Long id){
+//        HawkerListing hawkerlisting = hservice.findHawkerListingById(id);
+//        return new ResponseEntity<>(hawkerlisting, HttpStatus.OK);
+//	}
 	
 	@PostMapping("/hawkerlisting/add")
 	public ResponseEntity<HawkerListing> addHawkerListing(@RequestBody HawkerListing hawkerlisting){
