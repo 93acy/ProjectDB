@@ -5,10 +5,8 @@ import com.sun.istack.NotNull;
 import java.util.Collection;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Collection;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -38,8 +36,13 @@ public class User {
 		super();
 	}
 
+	public User(String username, String password) {
+		this.username = username;
+		this.password = password;
+	}
+
 	public User(String username, String password, String nric, String name, String race, String dob, String nationality,
-			String gender, String address, String mobileNo, String vicinity, Double customerRating) {
+				String gender, String address, String mobileNo, String vicinity, Double customerRating) {
 		super();
 		this.username = username;
 		this.password = password;
