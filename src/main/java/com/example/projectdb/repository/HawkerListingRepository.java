@@ -19,4 +19,5 @@ public interface HawkerListingRepository extends JpaRepository<HawkerListing, Lo
 //	public HawkerListing findHawkerListingById();
 
 
+
 }

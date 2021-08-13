@@ -4,15 +4,17 @@ import java.util.List;
 import java.util.Optional;
 
 import com.example.projectdb.model.HawkerListing;
+import org.springframework.stereotype.Component;
+
+
 
 public interface HawkerService {
-	
 
 	public List<HawkerListing> findAll();
 
 //	public List<HawkerListing> findByKeyword(String keyword);
 
-//	public Optional<HawkerListing> findHawkerListingById(Long id);
+//	public HawkerListing findHawkerListingById(Long id);
 
 	public HawkerListing addHawkerListing(HawkerListing hawkerlisting);
 
