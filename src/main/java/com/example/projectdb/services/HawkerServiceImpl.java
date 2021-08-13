@@ -3,11 +3,12 @@ package com.example.projectdb.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.projectdb.model.HawkerListing;
 import com.example.projectdb.repository.HawkerListingRepository;
 
-
+@Service
 public class HawkerServiceImpl implements HawkerService{
 	
 	@Autowired
@@ -18,15 +19,15 @@ public class HawkerServiceImpl implements HawkerService{
 		return hrepo.findAll();
 	}
 
-	@Override
-	public List<HawkerListing> findByKeyword(String keyword) {
-		return hrepo.findByKeyword(keyword);
-	}
+//	@Override
+//	public List<HawkerListing> findByKeyword(String keyword) {
+//		return hrepo.findByKeyword(keyword);
+//	}
 
-	@Override
-	public HawkerListing findHawkerListingById(Long id) {
-		return hrepo.findHawkerListingById();
-	}
+//	@Override
+//	public HawkerListing findHawkerListingById(Long id) {
+//		return hrepo.findHawkerListingById();
+//	}
 
 	@Override
 	public HawkerListing addHawkerListing(HawkerListing hawkerlisting) {

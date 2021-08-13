@@ -1,6 +1,7 @@
 package com.example.projectdb.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.example.projectdb.model.HawkerListing;
 
@@ -9,9 +10,9 @@ public interface HawkerService {
 
 	public List<HawkerListing> findAll();
 
-	public List<HawkerListing> findByKeyword(String keyword);
+//	public List<HawkerListing> findByKeyword(String keyword);
 
-	public HawkerListing findHawkerListingById(Long id);
+//	public Optional<HawkerListing> findHawkerListingById(Long id);
 
 	public HawkerListing addHawkerListing(HawkerListing hawkerlisting);
 

@@ -34,11 +34,11 @@ public class HawkerListingController {
         return new ResponseEntity<>(hawkerlistings, HttpStatus.OK);
 	}
 	
-	@GetMapping("/hawkerlisting/{id}") 
-    public ResponseEntity<HawkerListing> getHawkerListingById(@PathVariable("id") Long id){
-        HawkerListing hawkerlisting = hservice.findHawkerListingById(id);
-        return new ResponseEntity<>(hawkerlisting, HttpStatus.OK);
-	}
+//	@GetMapping("/hawkerlisting/{id}") 
+//    public ResponseEntity<HawkerListing> getHawkerListingById(@PathVariable("id") Long id){
+//        HawkerListing hawkerlisting = hservice.findHawkerListingById(id);
+//        return new ResponseEntity<>(hawkerlisting, HttpStatus.OK);
+//	}
 	
 	@PostMapping("/hawkerlisting/add")
 	public ResponseEntity<HawkerListing> addHawkerListing(@RequestBody HawkerListing hawkerlisting){
