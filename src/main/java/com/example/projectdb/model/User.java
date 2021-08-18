@@ -1,12 +1,12 @@
 package com.example.projectdb.model;
 
+import com.sun.istack.NotNull;
+
 import java.util.Collection;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Collection;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -14,8 +14,9 @@ public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	
+	@NotNull
 	private String username;
+	@NotNull
 	private String password;
 	private String nric;
 	private String name;
@@ -28,15 +29,20 @@ public class User {
 	private String vicinity;
 	private Double customerRating;
 	
-	@OneToMany(mappedBy="user",cascade=CascadeType.REMOVE)
-	private Collection<OrderDetail> orderDetails;
+//	@OneToMany(mappedBy="user",cascade=CascadeType.REMOVE)
+//	private Collection<OrderDetail> orderDetails;
 
 	public User() {
 		super();
 	}
 
+	public User(String username, String password) {
+		this.username = username;
+		this.password = password;
+	}
+
 	public User(String username, String password, String nric, String name, String race, String dob, String nationality,
-			String gender, String address, String mobileNo, String vicinity, Double customerRating) {
+				String gender, String address, String mobileNo, String vicinity, Double customerRating) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -156,13 +162,13 @@ public class User {
 		this.customerRating = customerRating;
 	}
 
-	public Collection<OrderDetail> getOrderDetails() {
-		return orderDetails;
-	}
-
-	public void setOrderDetails(Collection<OrderDetail> orderDetails) {
-		this.orderDetails = orderDetails;
-	}
+//	public Collection<OrderDetail> getOrderDetails() {
+//		return orderDetails;
+//	}
+//
+//	public void setOrderDetails(Collection<OrderDetail> orderDetails) {
+//		this.orderDetails = orderDetails;
+//	}
 	
 	
 
