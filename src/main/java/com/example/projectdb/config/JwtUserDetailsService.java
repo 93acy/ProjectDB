@@ -10,7 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.projectdb.model.User;
-import com.example.projectdb.repository.UserRepository;
+import com.example.projectdb.repo.UserRepository;
 
 @Service
 public class JwtUserDetailsService implements UserDetailsService {

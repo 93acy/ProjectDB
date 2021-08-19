@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.projectdb.model.User;
-import com.example.projectdb.repository.UserRepository;
+import com.example.projectdb.repo.UserRepository;
 
 @Service
 public class UserServiceImpl implements UserService {
