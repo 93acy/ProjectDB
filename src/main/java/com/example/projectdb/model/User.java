@@ -2,6 +2,7 @@ package com.example.projectdb.model;
 
 import com.sun.istack.NotNull;
 
+
 import java.util.Collection;
 
 import javax.persistence.CascadeType;
@@ -9,9 +10,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.Proxy;
+
+
 @Entity
+@Inheritance(strategy=InheritanceType.JOINED)
+@Proxy(lazy=false)
 public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

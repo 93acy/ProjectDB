@@ -20,7 +20,7 @@ public class FoodItem {
 	private Double upperPrice;
 	private Double lowerPrice;
 	
-	@OneToOne
+	@ManyToOne
 	private CourierListingDetails courierListingDetails;
 	
 	@ManyToOne

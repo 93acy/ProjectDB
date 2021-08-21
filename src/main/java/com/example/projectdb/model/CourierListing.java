@@ -1,6 +1,7 @@
 package com.example.projectdb.model;
 
 import java.util.Collection;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -18,6 +19,9 @@ public class CourierListing {
 	private Long id;
 	
 	private String pickupLocation;
+	private Date pickupDate;
+	private String pickupTime;
+	private String orderBeforeTime;
 	private Double totalPrice;
 	private Boolean optionForDoorDelivery;
 	private String vicinity;

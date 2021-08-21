@@ -24,8 +24,8 @@ public class CourierListingDetails {
 	@OneToMany(mappedBy="courierListingDetails",cascade=CascadeType.REMOVE)
 	private Collection<OrderDetail> orderDetails;
 	
-	@OneToOne(mappedBy="courierListingDetails",cascade=CascadeType.REMOVE)
-	private FoodItem foodItem;
+	@OneToMany(mappedBy="courierListingDetails",cascade=CascadeType.REMOVE)
+	private Collection<FoodItem> foodItems;
 	
 	@OneToMany(mappedBy="courierListingDetails",cascade=CascadeType.REMOVE)
 	private Collection<CourierListingDetailsReports> reports;
@@ -85,12 +85,12 @@ public class CourierListingDetails {
 		this.orderDetails = orderDetails;
 	}
 
-	public FoodItem getFoodItem() {
-		return foodItem;
+	public Collection<FoodItem> getFoodItems() {
+		return foodItems;
 	}
 
-	public void setFoodItem(FoodItem foodItem) {
-		this.foodItem = foodItem;
+	public void setFoodItems(Collection<FoodItem> foodItems) {
+		this.foodItems = foodItems;
 	}
 
 	public Collection<CourierListingDetailsReports> getReports() {

@@ -14,9 +14,7 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.Proxy;
 
 @Entity
-@Inheritance(strategy=InheritanceType.JOINED)
-@Proxy(lazy=false)
-public class Courier{
+public class Courier extends User{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
