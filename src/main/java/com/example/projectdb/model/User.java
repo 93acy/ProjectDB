@@ -39,8 +39,8 @@ public class User {
 	private String vicinity;
 	private Double customerRating;
 	
-//	@OneToMany(mappedBy="user",cascade=CascadeType.REMOVE)
-//	private Collection<OrderDetail> orderDetails;
+	@OneToMany(mappedBy="user",cascade=CascadeType.REMOVE)
+	private Collection<UserOrder> userOrders;
 
 	public User() {
 		super();
@@ -167,14 +167,13 @@ public class User {
 		this.customerRating = customerRating;
 	}
 
-//	public Collection<OrderDetail> getOrderDetails() {
-//		return orderDetails;
-//	}
-//
-//	public void setOrderDetails(Collection<OrderDetail> orderDetails) {
-//		this.orderDetails = orderDetails;
-//	}
-	
-	
+	public Collection<UserOrder> getUserOrders() {
+		return userOrders;
+	}
+
+	public void setUserOrders(Collection<UserOrder> userOrders) {
+		this.userOrders = userOrders;
+	}
+
 
 }

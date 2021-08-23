@@ -58,7 +58,9 @@ public class CourierController {
 			}
 		}
 		
-		frepo.saveAndFlush(newFoodItem);
+		frepo.save(newFoodItem);
+		
+		//frepo.saveFood(newFoodItem.getName());
 		return new ResponseEntity<String>("SUCCESS", HttpStatus.CREATED);
 	}
 

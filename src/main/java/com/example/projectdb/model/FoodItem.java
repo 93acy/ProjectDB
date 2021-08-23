@@ -1,5 +1,6 @@
 package com.example.projectdb.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,9 +22,9 @@ public class FoodItem {
 	private Double lowerPrice;
 	
 	@ManyToOne
-	private CourierListingDetails courierListingDetails;
+	private CourierFoodItemDetails courierFoodItemDetails;
 	
-	@ManyToOne
+	@ManyToOne//(cascade = {CascadeType.ALL})
 	private HawkerListing hawkerListing;
 
 	public FoodItem() {
@@ -87,12 +88,14 @@ public class FoodItem {
 		this.lowerPrice = lowerPrice;
 	}
 
-	public CourierListingDetails getCourierListingDetails() {
-		return courierListingDetails;
+	
+
+	public CourierFoodItemDetails getCourierFoodItemDetails() {
+		return courierFoodItemDetails;
 	}
 
-	public void setCourierListingDetails(CourierListingDetails courierListingDetails) {
-		this.courierListingDetails = courierListingDetails;
+	public void setCourierFoodItemDetails(CourierFoodItemDetails courierFoodItemDetails) {
+		this.courierFoodItemDetails = courierFoodItemDetails;
 	}
 
 	public HawkerListing getHawkerListing() {

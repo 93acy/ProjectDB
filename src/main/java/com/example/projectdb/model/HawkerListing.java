@@ -21,6 +21,7 @@ public class HawkerListing {
 	private String postalCode;
 	private String stallNo;
 	private Long stallImage;
+	private String locationArea;
 	
 	@OneToMany(mappedBy="hawkerListing",cascade=CascadeType.REMOVE)
 	private Collection<CourierListing> courierListings;
@@ -31,14 +32,6 @@ public class HawkerListing {
 	public HawkerListing() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-
-	public HawkerListing(String address, String postalCode, String stallNo, Long stallImage) {
-		super();
-		this.address = address;
-		this.postalCode = postalCode;
-		this.stallNo = stallNo;
-		this.stallImage = stallImage;
 	}
 
 	public Long getId() {
@@ -88,6 +81,16 @@ public class HawkerListing {
 	public void setStallImage(Long stallImage) {
 		this.stallImage = stallImage;
 	}
+	
+	
+
+	public String getLocationArea() {
+		return locationArea;
+	}
+
+	public void setLocationArea(String locationArea) {
+		this.locationArea = locationArea;
+	}
 
 	public Collection<CourierListing> getCourierListings() {
 		return courierListings;
@@ -104,6 +107,8 @@ public class HawkerListing {
 	public void setFoodItems(Collection<FoodItem> foodItems) {
 		this.foodItems = foodItems;
 	}
+	
+	
 
     
 	

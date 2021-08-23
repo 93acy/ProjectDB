@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-public class CourierListingDetails {
+public class CourierFoodItemDetails {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
@@ -21,24 +21,25 @@ public class CourierListingDetails {
 	private Integer totalQuantity;
 	private Long reportCount;
 	
-	@OneToMany(mappedBy="courierListingDetails",cascade=CascadeType.REMOVE)
-	private Collection<OrderDetail> orderDetails;
 	
-	@OneToMany(mappedBy="courierListingDetails",cascade=CascadeType.REMOVE)
+	@OneToMany(mappedBy="courierFoodItemDetails",cascade=CascadeType.REMOVE)
 	private Collection<FoodItem> foodItems;
 	
-	@OneToMany(mappedBy="courierListingDetails",cascade=CascadeType.REMOVE)
+	@OneToMany(mappedBy="courierFoodItemDetails",cascade=CascadeType.REMOVE)
 	private Collection<CourierListingDetailsReports> reports;
 	
 	@ManyToOne
 	private CourierListing courierListing;
+	
+	@OneToOne(mappedBy="courierFoodItemDetails",cascade=CascadeType.REMOVE)
+	private UserOrderDetail userOrderDetail;
 
 	
-	public CourierListingDetails() {
+	public CourierFoodItemDetails() {
 		super();
 	}
 
-	public CourierListingDetails(Double pricePerUnit, Integer totalQuantity, Long reportCount) {
+	public CourierFoodItemDetails(Double pricePerUnit, Integer totalQuantity, Long reportCount) {
 		super();
 		this.pricePerUnit = pricePerUnit;
 		this.totalQuantity = totalQuantity;
@@ -77,14 +78,6 @@ public class CourierListingDetails {
 		this.reportCount = reportCount;
 	}
 
-	public Collection<OrderDetail> getOrderDetails() {
-		return orderDetails;
-	}
-
-	public void setOrderDetails(Collection<OrderDetail> orderDetails) {
-		this.orderDetails = orderDetails;
-	}
-
 	public Collection<FoodItem> getFoodItems() {
 		return foodItems;
 	}
@@ -108,9 +101,14 @@ public class CourierListingDetails {
 	public void setCourierListing(CourierListing courierListing) {
 		this.courierListing = courierListing;
 	}
-	
-	
-	
-	
 
+
+	public UserOrderDetail getUserOrderDetail() {
+		return userOrderDetail;
+	}
+
+	public void setUserOrderDetail(UserOrderDetail userOrderDetail) {
+		this.userOrderDetail = userOrderDetail;
+	}
+	
 }

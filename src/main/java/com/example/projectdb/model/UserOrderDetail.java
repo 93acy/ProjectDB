@@ -5,21 +5,25 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
-public class CourierListingDetailsReports {
-
+public class UserOrderDetail {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	private String reportDescription;
+	private Integer quantity;
 	
 	@ManyToOne
+	private UserOrder userOrder;
+	
+	@OneToOne
 	private CourierFoodItemDetails courierFoodItemDetails;
 
-	public CourierListingDetailsReports() {
+	public UserOrderDetail() {
 		super();
+		
 	}
 
 	public Long getId() {
@@ -30,12 +34,20 @@ public class CourierListingDetailsReports {
 		this.id = id;
 	}
 
-	public String getReportDescription() {
-		return reportDescription;
+	public Integer getQuantity() {
+		return quantity;
 	}
 
-	public void setReportDescription(String reportDescription) {
-		this.reportDescription = reportDescription;
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+
+	public UserOrder getUserOrder() {
+		return userOrder;
+	}
+
+	public void setUserOrder(UserOrder userOrder) {
+		this.userOrder = userOrder;
 	}
 
 	public CourierFoodItemDetails getCourierFoodItemDetails() {
@@ -45,7 +57,7 @@ public class CourierListingDetailsReports {
 	public void setCourierFoodItemDetails(CourierFoodItemDetails courierFoodItemDetails) {
 		this.courierFoodItemDetails = courierFoodItemDetails;
 	}
-
+	
 	
 	
 	
