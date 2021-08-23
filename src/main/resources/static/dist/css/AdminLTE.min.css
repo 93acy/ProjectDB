@@ -1184,6 +1184,9 @@ padding : 0;
 .small-box p {
 font-size : 15px;
 }
+.col-lg-3{
+	width:33.333%;
+}
 .small-box p > small {
 display : block;
 color : #f9f9f9;
