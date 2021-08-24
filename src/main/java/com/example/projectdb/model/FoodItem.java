@@ -1,12 +1,14 @@
 package com.example.projectdb.model;
 
+import java.util.Collection;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class FoodItem {
@@ -21,8 +23,8 @@ public class FoodItem {
 	private Double upperPrice;
 	private Double lowerPrice;
 	
-	@ManyToOne
-	private CourierFoodItemDetails courierFoodItemDetails;
+	@OneToMany(mappedBy="foodItem",cascade=CascadeType.REMOVE)
+	private Collection<CourierFoodItemDetails> courierFoodItemDetails;
 	
 	@ManyToOne//(cascade = {CascadeType.ALL})
 	private HawkerListing hawkerListing;
@@ -88,13 +90,12 @@ public class FoodItem {
 		this.lowerPrice = lowerPrice;
 	}
 
-	
 
-	public CourierFoodItemDetails getCourierFoodItemDetails() {
+	public Collection<CourierFoodItemDetails> getCourierFoodItemDetails() {
 		return courierFoodItemDetails;
 	}
 
-	public void setCourierFoodItemDetails(CourierFoodItemDetails courierFoodItemDetails) {
+	public void setCourierFoodItemDetails(Collection<CourierFoodItemDetails> courierFoodItemDetails) {
 		this.courierFoodItemDetails = courierFoodItemDetails;
 	}
 

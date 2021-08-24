@@ -13,7 +13,9 @@ public interface FoodItemRepository extends JpaRepository<FoodItem, Long> {
 	
 	@Modifying
 	@Transactional
-	@Query(value="INSERT INTO food_item (name) VALUES (:name)", nativeQuery=true)
-	public void saveFood(@Param("name") String name);
+	@Query(value="UPDATE food_item SET hawker_listing_id =:id WHERE name=:name", nativeQuery=true)
+	public void updateHawkerId(@Param("name") String name,@Param("id") Long hawkerId);
+	
+
 
 }
