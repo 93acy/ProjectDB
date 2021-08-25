@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.example.projectdb.model.CourierFoodItemDetails;
 
-public interface CoureirFoodItemDetailRepository extends JpaRepository<CourierFoodItemDetails, Long> {
+public interface CourierFoodItemDetailRepository extends JpaRepository<CourierFoodItemDetails, Long> {
 	
 	@Modifying
 	@Transactional

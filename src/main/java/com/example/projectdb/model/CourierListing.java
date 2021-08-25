@@ -19,7 +19,7 @@ public class CourierListing {
 	private Long id;
 	
 	private String pickupLocation;
-	private Date pickupDate;
+	private String pickupDate;
 	private String pickupTime;
 	private String orderBeforeTime;	
 	private String courierOrderStatus;
@@ -61,11 +61,11 @@ public class CourierListing {
 
 	
 
-	public Date getPickupDate() {
+	public String getPickupDate() {
 		return pickupDate;
 	}
 
-	public void setPickupDate(Date pickupDate) {
+	public void setPickupDate(String pickupDate) {
 		this.pickupDate = pickupDate;
 	}
 

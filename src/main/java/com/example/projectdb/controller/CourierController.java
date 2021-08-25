@@ -3,6 +3,8 @@ package com.example.projectdb.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.projectdb.model.CourierListing;
+import com.example.projectdb.repo.CourierPickupDetailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.projectdb.model.CourierFoodItemDetails;
 import com.example.projectdb.model.FoodItem;
-import com.example.projectdb.repo.CoureirFoodItemDetailRepository;
+import com.example.projectdb.repo.CourierFoodItemDetailRepository;
 import com.example.projectdb.repo.FoodItemRepository;
 import com.example.projectdb.repo.HawkerListingRepository;
 
@@ -29,7 +31,10 @@ public class CourierController {
 	FoodItemRepository frepo;
 	
 	@Autowired
-	CoureirFoodItemDetailRepository cfrepo;
+	CourierFoodItemDetailRepository cfrepo;
+
+	@Autowired
+	CourierPickupDetailRepository cpdrepo;
 	
 	
 	@RequestMapping("/hawkerlisting/All")
@@ -97,7 +102,14 @@ public class CourierController {
 		return new ResponseEntity<String>("SUCCESS", HttpStatus.CREATED);
 	}
 
+	@RequestMapping("/courier/courierPickupDetail")
+	public ResponseEntity<String> createCourierPickupDetail
+			(@RequestBody CourierListing newCourierListing, @RequestParam List<Long> courierListingIds) {
+
+		cpdrepo.save(newCourierListing);
+		return new ResponseEntity<String>("SUCCESS", HttpStatus.CREATED);
 
 
+	}
 }
 
