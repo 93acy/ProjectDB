@@ -1,5 +1,7 @@
 package com.example.projectdb.repo;
 
+import java.util.Collection;
+
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,6 +17,9 @@ public interface FoodItemRepository extends JpaRepository<FoodItem, Long> {
 	@Transactional
 	@Query(value="UPDATE food_item SET hawker_listing_id =:id WHERE name=:name", nativeQuery=true)
 	public void updateHawkerId(@Param("name") String name,@Param("id") Long hawkerId);
+	
+	@Query(value="select * from food_item where id=:id", nativeQuery=true)
+	public FoodItem findFoodItemById(@Param("id") Long foodId);
 	
 
 
