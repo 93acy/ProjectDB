@@ -29,4 +29,5 @@ public interface CourierListingRepository extends JpaRepository<CourierListing, 
 	public void updateHawkerListingId(@Param("id") Long courierListingId,@Param("hawkerId") Long hawkerId);
 
 
+
 }

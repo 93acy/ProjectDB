@@ -14,20 +14,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.projectdb.model.User;
-import com.example.projectdb.repo.CourierListingRepository;
-import com.example.projectdb.repo.UserRepository;
+import com.example.projectdb.service.CourierListingService;
+import com.example.projectdb.service.UserService;
 
 @RestController
 public class UserController {
     @Autowired
-    UserRepository userRepository;
+    UserService uservice;
     
     @Autowired
-    CourierListingRepository clrepo;
+    CourierListingService clservice;
     
     @PostMapping("/users/register")
     public ResponseEntity<String> registerUser(@RequestBody User newUser) {
-        List<User> users = userRepository.findAll();
+        List<User> users = uservice.findAll();
         System.out.println("New user: " + newUser.toString());
         for (User user : users) {
             if (user.equals(newUser)) {
@@ -35,13 +35,13 @@ public class UserController {
                 return new ResponseEntity<String>("Failed", HttpStatus.BAD_REQUEST);
             }
         }
-        userRepository.save(newUser);
+        uservice.save(newUser);
         return new ResponseEntity<String>("Success", HttpStatus.CREATED);
     }
     
     @PostMapping("/users/login")
     public ResponseEntity<String> loginUser(@RequestBody User user) {
-        List<User> users = userRepository.findAll();
+        List<User> users = uservice.findAll();
         for (User other : users) {
             if (other.equals(user)) {
 //                other.setLoggedIn(true);
@@ -56,7 +56,7 @@ public class UserController {
 	public ResponseEntity<ArrayList<ArrayList<String>>> selectCourierListing(){
 		
 		
-		ArrayList<ArrayList<String>> cl = (ArrayList<ArrayList<String>>)clrepo.findCourierListing();	
+		ArrayList<ArrayList<String>> cl = (ArrayList<ArrayList<String>>)clservice.findCourierListing();	
 		
 		return new ResponseEntity<ArrayList<ArrayList<String>>>(cl,HttpStatus.OK);
 	}
@@ -65,7 +65,7 @@ public class UserController {
 	public ResponseEntity<ArrayList<ArrayList<String>>> viewFoodItem
 	(@PathVariable("id") Long CourierListingId,@RequestParam Long hawkerId){
 	
-		ArrayList<ArrayList<String>> data = (ArrayList<ArrayList<String>>)clrepo
+		ArrayList<ArrayList<String>> data = (ArrayList<ArrayList<String>>)clservice
 				.findFoodItemByCourierListingId(CourierListingId,hawkerId);
 		
 		return new ResponseEntity<ArrayList<ArrayList<String>>>(data,HttpStatus.OK);

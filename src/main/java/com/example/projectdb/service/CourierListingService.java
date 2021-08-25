@@ -1,0 +1,17 @@
+package com.example.projectdb.service;
+
+import java.util.ArrayList;
+
+import com.example.projectdb.model.CourierListing;
+
+public interface CourierListingService {
+
+	public void save(CourierListing courierListing);
+
+	public void updateHawkerListingId(Long id, Long id2);
+
+	public ArrayList<ArrayList<String>> findCourierListing();
+
+	public ArrayList<ArrayList<String>> findFoodItemByCourierListingId(Long courierListingId, Long hawkerId);
+
+}

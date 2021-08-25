@@ -1,0 +1,38 @@
+package com.example.projectdb.service;
+
+import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.projectdb.model.CourierListing;
+import com.example.projectdb.repo.CourierListingRepository;
+
+
+@Service
+public class CourierListingServiceImpl implements CourierListingService{
+	
+	@Autowired
+	private CourierListingRepository crepo;
+
+	@Override
+	public void save(CourierListing courierListing) {
+		crepo.saveAndFlush(courierListing);	
+	}
+
+	@Override
+	public void updateHawkerListingId(Long id, Long id2) {
+		crepo.updateHawkerListingId(id, id2);
+	}
+
+	@Override
+	public ArrayList<ArrayList<String>> findCourierListing() {
+		return crepo.findCourierListing();
+	}
+
+	@Override
+	public ArrayList<ArrayList<String>> findFoodItemByCourierListingId(Long courierListingId, Long hawkerId) {
+		return crepo.findFoodItemByCourierListingId(courierListingId, hawkerId);
+	}
+
+}

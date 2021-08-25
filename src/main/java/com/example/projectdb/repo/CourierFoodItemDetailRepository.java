@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.example.projectdb.model.CourierFoodItemDetails;
 
-public interface CoureirFoodItemDetailRepository extends JpaRepository<CourierFoodItemDetails, Long> {
+public interface CourierFoodItemDetailRepository extends JpaRepository<CourierFoodItemDetails, Long> {
 	
 	@Modifying
 	@Transactional
@@ -23,5 +23,6 @@ public interface CoureirFoodItemDetailRepository extends JpaRepository<CourierFo
 			+ "WHERE id=:courierDetailId", nativeQuery=true)
 	public void updateCourieListingId(@Param("courierDetailId") Long courierDetailId,
 			@Param("courierListingId") Long courierListingId);
+
 
 }

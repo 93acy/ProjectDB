@@ -16,26 +16,30 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.projectdb.model.CourierFoodItemDetails;
 import com.example.projectdb.model.CourierListing;
 import com.example.projectdb.model.FoodItem;
-import com.example.projectdb.repo.CoureirFoodItemDetailRepository;
+import com.example.projectdb.repo.CourierFoodItemDetailRepository;
 import com.example.projectdb.repo.CourierListingRepository;
 import com.example.projectdb.repo.FoodItemRepository;
 import com.example.projectdb.repo.HawkerListingRepository;
+import com.example.projectdb.service.CourierFoodItemDetailService;
+import com.example.projectdb.service.CourierListingService;
+import com.example.projectdb.service.FoodItemService;
+import com.example.projectdb.service.HawkerListingService;
 
 @RestController
 
 public class CourierController {
 	
 	@Autowired
-	HawkerListingRepository hrepo;
+	HawkerListingService hservice;;
 	
 	@Autowired
-	CourierListingRepository crepo;
+	CourierListingService clservice;
 	
 	@Autowired
-	FoodItemRepository frepo;
+	CourierFoodItemDetailService cfservice;
 	
 	@Autowired
-	CoureirFoodItemDetailRepository cfrepo;
+	FoodItemService fservice;
 	
 	
 	
@@ -43,7 +47,7 @@ public class CourierController {
 	public ResponseEntity<ArrayList<ArrayList<String>>> selectHawker(){
 		
 		
-		ArrayList<ArrayList<String>> hl = (ArrayList<ArrayList<String>>)hrepo.findHawker();	
+		ArrayList<ArrayList<String>> hl = (ArrayList<ArrayList<String>>)hservice.findHawker();	
 		
 		return new ResponseEntity<ArrayList<ArrayList<String>>>(hl,HttpStatus.OK);
 	}
@@ -53,7 +57,7 @@ public class CourierController {
 	@RequestMapping("/courier/hawker/{id}")	
 	public ResponseEntity<ArrayList<ArrayList<String>>> viewFoodItem(@PathVariable("id") Long HawkerId){
 	
-		ArrayList<ArrayList<String>> food = (ArrayList<ArrayList<String>>)hrepo.findFoodItemByHawkerId(HawkerId);
+		ArrayList<ArrayList<String>> food = (ArrayList<ArrayList<String>>)hservice.findFoodItemByHawkerId(HawkerId);
 		
 		return new ResponseEntity<ArrayList<ArrayList<String>>>(food,HttpStatus.OK);
 	}
@@ -62,7 +66,7 @@ public class CourierController {
 	@RequestMapping("/courier/food")
 	public ResponseEntity<String> createFood(@RequestBody FoodItem newFoodItem, @RequestParam Long hawkerId){
 		
-		List<FoodItem> foodItems = frepo.findAll();
+		List<FoodItem> foodItems = fservice.findAll();
 		
 		for(FoodItem f:foodItems) {
 			if(f.getName()==newFoodItem.getName()) {
@@ -70,8 +74,8 @@ public class CourierController {
 			}
 		}
 		
-		frepo.save(newFoodItem);
-		frepo.updateHawkerId(newFoodItem.getName(),hawkerId);
+		fservice.save(newFoodItem);
+		fservice.updateHawkerId(newFoodItem.getName(),hawkerId);
 		return new ResponseEntity<String>("SUCCESS", HttpStatus.CREATED);
 	}
 	
@@ -84,8 +88,8 @@ public class CourierController {
 		
 		
 		for(int i=0; i < courierFoodItemDetails.size();i++) {
-			cfrepo.saveAndFlush(courierFoodItemDetails.get(i));
-			cfrepo.updateCourierDetailId(foodIds.get(i), courierFoodItemDetails.get(i).getId());
+			cfservice.saveAndFlush(courierFoodItemDetails.get(i));
+			cfservice.updateCourierDetailId(foodIds.get(i), courierFoodItemDetails.get(i).getId());
 			courierFoodItemDetailIds.add(courierFoodItemDetails.get(i).getId().toString());
 		}				
 				
@@ -112,7 +116,7 @@ public class CourierController {
 			@RequestParam ArrayList<String> courierFoodItemDetailIds,
 			@RequestParam ArrayList<String> FoodID){
 
-		crepo.save(CourierListing);
+		clservice.save(CourierListing);
 		Long courierFoodItemDetailId;
 		Long foodId;
 		FoodItem food;
@@ -123,11 +127,11 @@ public class CourierController {
 			courierFoodItemDetailId = Long.parseLong(courierFoodItemDetailIds.get(i));
 			
 			//create courier listing object
-			cfrepo.updateCourieListingId(courierFoodItemDetailId,CourierListing.getId());
+			cfservice.updateCourierListingId(courierFoodItemDetailId,CourierListing.getId());
 			
 			//update hawker id
-			food=frepo.findFoodItemById(foodId);
-			crepo.updateHawkerListingId(CourierListing.getId(), food.getHawkerListing().getId());
+			food=fservice.findFoodItemById(foodId);
+			clservice.updateHawkerListingId(CourierListing.getId(), food.getHawkerListing().getId());
 			
 		}
 		
