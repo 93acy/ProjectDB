@@ -104,9 +104,10 @@ public class CourierController {
 
 	@RequestMapping("/courier/courierPickupDetail")
 	public ResponseEntity<String> createCourierPickupDetail
-			(@RequestBody CourierListing newCourierListing, @RequestParam List<Long> courierListingIds) {
+			(@RequestBody CourierListing newCourierListing, @RequestParam Long courierListingId) {
 
 		cpdrepo.save(newCourierListing);
+		cfrepo.updateCourierListingId(newCourierListing.getId(),courierListingId);
 		return new ResponseEntity<String>("SUCCESS", HttpStatus.CREATED);
 
 
