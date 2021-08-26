@@ -27,37 +27,37 @@
                     <p>Listings</p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-bag"></i>
+                    <i class="glyphicon glyphicon-list-alt"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                
             </div>
         </div>
         <!-- ./col -->
         <div class="col-lg-3">
             <!-- small box -->
-            <div class="small-box bg-green">
+            <div class="small-box bg-olive">
                 <div class="inner">
                     <h3 id="count_producttype"></h3>
                     <p>Orders</p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-stats-bars"></i>
+                    <i class="glyphicon glyphicon-shopping-cart"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              
             </div>
         </div>
         <!-- ./col -->
         <div class="col-lg-3">
             <!-- small box -->
-            <div class="small-box bg-yellow">
+            <div class="small-box bg-maroon">
                 <div class="inner">
                     <h3 id="count_user"></h3>
                     <p>Earnings</p>
                 </div>
-                <div class="icon">
-                    <i class="ion ion-person-add"></i>
+                <div class="icon" style="top:-10px">
+                    <i class="fa fa-usd"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+             
             </div>
         </div>
         </div>
@@ -84,11 +84,11 @@
         
         </tr>
         </thead>
-             <tr th:each="hawkerlisting:${listHawkers}">
-   <td th:text="${hawkerlisting.id}"></td> 
-   <td th:text="${hawkerlisting.address}"></td>
-   <td th:text="${hawkerlisting.postalCode}"></td>
-   <td th:text="${hawkerlisting.stallNo}"></td>
+             <tr th:each="courierlisting:${listCouriers}">
+   <td th:text="${courierlisting.id}"></td> 
+   <td th:text="${courierlisting.pickupLocation}"></td>
+   <td th:text="${courierlisting.pickupTime}"></td>
+   <td th:text="${courierlisting.pickupDate}"></td>
  </tr>
 </table>
               </div>
@@ -124,30 +124,7 @@
                     <div class="chart" id="line-chart" style="height: 250px;"></div>
                 </div>
                 <!-- /.box-body -->
-                <div class="box-footer no-border">
-                    <div class="row">
-                        <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                            <input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60" data-fgColor="#39CCCC">
 
-                            <div class="knob-label">Mail-Orders</div>
-                        </div>
-                        <!-- ./col -->
-                        <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                            <input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60" data-fgColor="#39CCCC">
-
-                            <div class="knob-label">Online</div>
-                        </div>
-                        <!-- ./col -->
-                        <div class="col-xs-4 text-center">
-                            <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60" data-fgColor="#39CCCC">
-
-                            <div class="knob-label">In-Store</div>
-                        </div>
-                        <!-- ./col -->
-                    </div>
-                    <!-- /.row -->
-                </div>
-                <!-- /.box-footer -->
             </div>
             <!-- /.box -->
 

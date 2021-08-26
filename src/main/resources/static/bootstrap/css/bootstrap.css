@@ -1143,6 +1143,7 @@ img {
 }
 .img-circle {
   border-radius: 50%;
+  line-height: 1.42857143;
 }
 hr {
   margin-top: 20px;

@@ -237,9 +237,8 @@ $(document).ready(function() {
             //debugger;
 
             $('#count_listing').text(data.count_listing);
-            $('#count_producttype').text(data.count_producttype);
+            $('#count_order').text(data.count_order);
             $('#count_user').text(data.count_user);
-            $('#count_visitors').text(data.count_visitors);
 
             morisArea(data.areachart);
             morisLine(data.linechart);

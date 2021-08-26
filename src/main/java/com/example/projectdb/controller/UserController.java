@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.projectdb.model.User;
 import com.example.projectdb.service.CourierListingService;
+import com.example.projectdb.service.UserOrderService;
 import com.example.projectdb.service.UserService;
 
 @RestController
@@ -24,6 +25,9 @@ public class UserController {
     
     @Autowired
     CourierListingService clservice;
+    
+    @Autowired 
+    UserOrderService uoservice;
     
     @PostMapping("/users/register")
     public ResponseEntity<String> registerUser(@RequestBody User newUser) {
@@ -70,4 +74,10 @@ public class UserController {
 		
 		return new ResponseEntity<ArrayList<ArrayList<String>>>(data,HttpStatus.OK);
 	}
+    
+    @RequestMapping("/users/userorder")
+   	public ResponseEntity<ArrayList<ArrayList<String>>> viewAllUserOrder(){
+   		ArrayList<ArrayList<String>> userorders = (ArrayList<ArrayList<String>>)uoservice.findUserOrder();	
+   		return new ResponseEntity<ArrayList<ArrayList<String>>>(userorders,HttpStatus.OK);
+   	}
 }

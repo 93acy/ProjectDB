@@ -1,5 +1,6 @@
 package com.example.projectdb.controller;
 
+import com.example.projectdb.repo.CourierListingRepository;
 import com.example.projectdb.repo.HawkerListingRepository;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +20,14 @@ import java.util.List;
 public class DashboardRestController {
 
     @Autowired
-    private HawkerListingRepository hrepo;
+    private CourierListingRepository clrepo;
 
     @GetMapping("/statistics")
     public HashMap<String, Long> getDashboardStatistics(){
-        long hawkerListingCount = hrepo.count();
+        long courierListingCount = clrepo.count();
 
         HashMap<String, Long> map = new HashMap<>();
-        map.put("count_listing", hawkerListingCount);
+        map.put("count_listing", courierListingCount);
 
 		/*
 		 * //Area Chart List<MorisArea> morisAreas = new ArrayList<>();
