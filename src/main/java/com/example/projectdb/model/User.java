@@ -2,16 +2,14 @@ package com.example.projectdb.model;
 
 import com.sun.istack.NotNull;
 
-
 import java.util.Collection;
-
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Proxy;
@@ -44,6 +42,11 @@ public class User {
 
 	public User() {
 		super();
+	}
+
+	public User(String username, String password) {
+		this.username = username;
+		this.password = password;
 	}
 
 	public User(String username, String password, String nric, String name, String race, String dob, String nationality,
