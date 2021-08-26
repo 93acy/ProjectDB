@@ -1,5 +1,6 @@
 package com.example.projectdb.model;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.CascadeType;
@@ -15,11 +16,14 @@ public class HawkerListing {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	
+	private String stallName;
 	private String address;
 	private String postalCode;
 	private String stallNo;
 	private Long stallImage;
+	private String foodType;
+    private String carbType;
+    private String proteinType;
 	
 	@OneToMany(mappedBy="hawkerListing",cascade=CascadeType.REMOVE)
 	private Collection<CourierListing> courierListings;
@@ -78,6 +82,30 @@ public class HawkerListing {
 
 	public void setStallImage(Long stallImage) {
 		this.stallImage = stallImage;
+	}
+
+	public String getFoodType() {
+		return foodType;
+	}
+
+	public void setFoodType(String foodType) {
+		this.foodType = foodType;
+	}
+
+	public String getCarbType() {
+		return carbType;
+	}
+
+	public void setCarbType(String carbType) {
+		this.carbType = carbType;
+	}
+
+	public String getProteinType() {
+		return proteinType;
+	}
+
+	public void setProteinType(String proteinType) {
+		this.proteinType = proteinType;
 	}
 
 	public Collection<CourierListing> getCourierListings() {
