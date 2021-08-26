@@ -1,6 +1,7 @@
 package com.example.projectdb.model;
 
 import java.util.Collection;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -18,10 +19,11 @@ public class CourierListing {
 	private Long id;
 	
 	private String pickupLocation;
-	private Double totalPrice;
-	private Boolean optionForDoorDelivery;
-	private String vicinity;
-	private Double courierRating;
+	private String pickupDate;
+	private String pickupTime;
+	private String orderBeforeTime;	
+	private String courierOrderStatus;
+	
 	
 	@ManyToOne
 	private Courier courier;
@@ -30,21 +32,16 @@ public class CourierListing {
 	private HawkerListing hawkerListing;
 	
 	@OneToMany(mappedBy="courierListing",cascade=CascadeType.REMOVE)
-	private Collection<CourierListingDetails> courierListingDetails;
+	private Collection<CourierFoodItemDetails> courierListingDetails;
 
+	@OneToMany(mappedBy="courierListing",cascade=CascadeType.REMOVE)
+	private Collection<UserOrder> userOrders;
+	
 	public CourierListing() {
 		super();
 	}
 
-	public CourierListing(String pickupLocation, Double totalPrice, Boolean optionForDoorDelivery, String vicinity,
-			Double courierRating) {
-		super();
-		this.pickupLocation = pickupLocation;
-		this.totalPrice = totalPrice;
-		this.optionForDoorDelivery = optionForDoorDelivery;
-		this.vicinity = vicinity;
-		this.courierRating = courierRating;
-	}
+
 
 	public Long getId() {
 		return id;
@@ -62,36 +59,38 @@ public class CourierListing {
 		this.pickupLocation = pickupLocation;
 	}
 
-	public Double getTotalPrice() {
-		return totalPrice;
+	
+
+	public String getPickupDate() {
+		return pickupDate;
 	}
 
-	public void setTotalPrice(Double totalPrice) {
-		this.totalPrice = totalPrice;
+	public void setPickupDate(String pickupDate) {
+		this.pickupDate = pickupDate;
 	}
 
-	public Boolean getOptionForDoorDelivery() {
-		return optionForDoorDelivery;
+	public String getPickupTime() {
+		return pickupTime;
 	}
 
-	public void setOptionForDoorDelivery(Boolean optionForDoorDelivery) {
-		this.optionForDoorDelivery = optionForDoorDelivery;
+	public void setPickupTime(String pickupTime) {
+		this.pickupTime = pickupTime;
 	}
 
-	public String getVicinity() {
-		return vicinity;
+	public String getOrderBeforeTime() {
+		return orderBeforeTime;
 	}
 
-	public void setVicinity(String vicinity) {
-		this.vicinity = vicinity;
+	public void setOrderBeforeTime(String orderBeforeTime) {
+		this.orderBeforeTime = orderBeforeTime;
 	}
 
-	public Double getCourierRating() {
-		return courierRating;
+	public String getCourierOrderStatus() {
+		return courierOrderStatus;
 	}
 
-	public void setCourierRating(Double courierRating) {
-		this.courierRating = courierRating;
+	public void setCourierOrderStatus(String courierOrderStatus) {
+		this.courierOrderStatus = courierOrderStatus;
 	}
 
 	public Courier getCourier() {
@@ -110,13 +109,27 @@ public class CourierListing {
 		this.hawkerListing = hawkerListing;
 	}
 
-	public Collection<CourierListingDetails> getCourierListingDetails() {
+	public Collection<CourierFoodItemDetails> getCourierListingDetails() {
 		return courierListingDetails;
 	}
 
-	public void setCourierListingDetails(Collection<CourierListingDetails> courierListingDetails) {
+	public void setCourierListingDetails(Collection<CourierFoodItemDetails> courierListingDetails) {
 		this.courierListingDetails = courierListingDetails;
 	}
+
+
+
+	public Collection<UserOrder> getUserOrders() {
+		return userOrders;
+	}
+
+
+
+	public void setUserOrders(Collection<UserOrder> userOrders) {
+		this.userOrders = userOrders;
+	}
+	
+	
 	
 	
 

@@ -16,7 +16,7 @@ public class CourierListingDetailsReports {
 	private String reportDescription;
 	
 	@ManyToOne
-	private CourierListingDetails courierListingDetails;
+	private CourierFoodItemDetails courierFoodItemDetails;
 
 	public CourierListingDetailsReports() {
 		super();
@@ -38,13 +38,15 @@ public class CourierListingDetailsReports {
 		this.reportDescription = reportDescription;
 	}
 
-	public CourierListingDetails getCourierListingDetails() {
-		return courierListingDetails;
+	public CourierFoodItemDetails getCourierFoodItemDetails() {
+		return courierFoodItemDetails;
 	}
 
-	public void setCourierListingDetails(CourierListingDetails courierListingDetails) {
-		this.courierListingDetails = courierListingDetails;
+	public void setCourierFoodItemDetails(CourierFoodItemDetails courierFoodItemDetails) {
+		this.courierFoodItemDetails = courierFoodItemDetails;
 	}
+
+	
 	
 	
 

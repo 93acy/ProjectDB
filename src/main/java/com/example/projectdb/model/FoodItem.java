@@ -1,11 +1,14 @@
 package com.example.projectdb.model;
 
+import java.util.Collection;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class FoodItem {
@@ -20,10 +23,10 @@ public class FoodItem {
 	private Double upperPrice;
 	private Double lowerPrice;
 	
-	@OneToOne
-	private CourierListingDetails courierListingDetails;
+	@OneToMany(mappedBy="foodItem",cascade=CascadeType.REMOVE)
+	private Collection<CourierFoodItemDetails> courierFoodItemDetails;
 	
-	@ManyToOne
+	@ManyToOne//(cascade = {CascadeType.ALL})
 	private HawkerListing hawkerListing;
 
 	public FoodItem() {
@@ -87,12 +90,13 @@ public class FoodItem {
 		this.lowerPrice = lowerPrice;
 	}
 
-	public CourierListingDetails getCourierListingDetails() {
-		return courierListingDetails;
+
+	public Collection<CourierFoodItemDetails> getCourierFoodItemDetails() {
+		return courierFoodItemDetails;
 	}
 
-	public void setCourierListingDetails(CourierListingDetails courierListingDetails) {
-		this.courierListingDetails = courierListingDetails;
+	public void setCourierFoodItemDetails(Collection<CourierFoodItemDetails> courierFoodItemDetails) {
+		this.courierFoodItemDetails = courierFoodItemDetails;
 	}
 
 	public HawkerListing getHawkerListing() {

@@ -3,13 +3,21 @@ package com.example.projectdb.model;
 import com.sun.istack.NotNull;
 
 import java.util.Collection;
-
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.CascadeType;
-import javax.persistence.*;
-import java.util.Collection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.Proxy;
+
+
 @Entity
+@Inheritance(strategy=InheritanceType.JOINED)
+@Proxy(lazy=false)
 public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -29,8 +37,8 @@ public class User {
 	private String vicinity;
 	private Double customerRating;
 	
-//	@OneToMany(mappedBy="user",cascade=CascadeType.REMOVE)
-//	private Collection<OrderDetail> orderDetails;
+	@OneToMany(mappedBy="user",cascade=CascadeType.REMOVE)
+	private Collection<UserOrder> userOrders;
 
 	public User() {
 		super();
@@ -42,7 +50,7 @@ public class User {
 	}
 
 	public User(String username, String password, String nric, String name, String race, String dob, String nationality,
-				String gender, String address, String mobileNo, String vicinity, Double customerRating) {
+			String gender, String address, String mobileNo, String vicinity, Double customerRating) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -162,14 +170,13 @@ public class User {
 		this.customerRating = customerRating;
 	}
 
-//	public Collection<OrderDetail> getOrderDetails() {
-//		return orderDetails;
-//	}
-//
-//	public void setOrderDetails(Collection<OrderDetail> orderDetails) {
-//		this.orderDetails = orderDetails;
-//	}
-	
-	
+	public Collection<UserOrder> getUserOrders() {
+		return userOrders;
+	}
+
+	public void setUserOrders(Collection<UserOrder> userOrders) {
+		this.userOrders = userOrders;
+	}
+
 
 }

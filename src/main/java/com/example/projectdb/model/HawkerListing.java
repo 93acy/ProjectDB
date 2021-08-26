@@ -16,14 +16,23 @@ public class HawkerListing {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+<<<<<<< HEAD
 	private String stallName;
+=======
+	
+	private String name;
+>>>>>>> refs/remotes/origin/MergeAttempt
 	private String address;
 	private String postalCode;
 	private String stallNo;
 	private Long stallImage;
+<<<<<<< HEAD
 	private String foodType;
     private String carbType;
     private String proteinType;
+=======
+	private String locationArea;
+>>>>>>> refs/remotes/origin/MergeAttempt
 	
 	@OneToMany(mappedBy="hawkerListing",cascade=CascadeType.REMOVE)
 	private Collection<CourierListing> courierListings;
@@ -36,20 +45,20 @@ public class HawkerListing {
 		// TODO Auto-generated constructor stub
 	}
 
-	public HawkerListing(String address, String postalCode, String stallNo, Long stallImage) {
-		super();
-		this.address = address;
-		this.postalCode = postalCode;
-		this.stallNo = stallNo;
-		this.stallImage = stallImage;
-	}
-
 	public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getAddress() {
@@ -82,6 +91,16 @@ public class HawkerListing {
 
 	public void setStallImage(Long stallImage) {
 		this.stallImage = stallImage;
+	}
+	
+	
+
+	public String getLocationArea() {
+		return locationArea;
+	}
+
+	public void setLocationArea(String locationArea) {
+		this.locationArea = locationArea;
 	}
 
 	public String getFoodType() {
@@ -123,6 +142,8 @@ public class HawkerListing {
 	public void setFoodItems(Collection<FoodItem> foodItems) {
 		this.foodItems = foodItems;
 	}
+	
+	
 
     
 	
