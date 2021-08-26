@@ -3,6 +3,7 @@ package com.example.projectdb.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.projectdb.repo.UserOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,9 @@ public class UserController {
     
     @Autowired
     CourierListingRepository clrepo;
+
+    @Autowired
+    UserOrderRepository userOrderRepository;
     
     @PostMapping("/users/register")
     public ResponseEntity<String> registerUser(@RequestBody User newUser) {
@@ -70,4 +74,16 @@ public class UserController {
 		
 		return new ResponseEntity<ArrayList<ArrayList<String>>>(data,HttpStatus.OK);
 	}
+
+    @RequestMapping("/users/courierListingPickup")
+    public ResponseEntity<ArrayList<ArrayList<String>>> viewPickupDetails()
+    {
+
+        ArrayList<ArrayList<String>> data = (ArrayList<ArrayList<String>>)userOrderRepository
+                .findCourierPickupDetailsByCourierListingId();
+
+        return new ResponseEntity<ArrayList<ArrayList<String>>>(data,HttpStatus.OK);
+    }
+
+
 }

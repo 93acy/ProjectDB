@@ -25,8 +25,10 @@ public interface CourierListingRepository extends JpaRepository<CourierListing, 
 	
 	@Modifying
 	@Transactional
-	@Query(value="UPDATE courier_listing SET hawker_listing_id =:hawkerId WHERE id=:id", nativeQuery=true)
-	public void updateHawkerListingId(@Param("id") Long courierListingId,@Param("hawkerId") Long hawkerId);
+	@Query(value="UPDATE courier_listing SET hawker_listing_id =:hawkerId WHERE id=:id",
+			nativeQuery=true)
+	public void updateHawkerListingId(@Param("id") Long courierListingId,
+									  @Param("hawkerId") Long hawkerId);
 
 
 }
