@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.example.projectdb.repo.UserOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -75,14 +76,24 @@ public class UserController {
 		return new ResponseEntity<ArrayList<ArrayList<String>>>(data,HttpStatus.OK);
 	}
 
-    @RequestMapping("/users/courierListingPickup")
-    public ResponseEntity<ArrayList<ArrayList<String>>> viewPickupDetails()
+    @RequestMapping("/users/courierListingPickup/{id}")
+    public ResponseEntity<ArrayList<ArrayList<String>>> viewPickupDetails(@PathVariable("id") Long userOrderId)
     {
 
-        ArrayList<ArrayList<String>> data = (ArrayList<ArrayList<String>>)userOrderRepository
-                .findCourierPickupDetailsByCourierListingId();
+        ArrayList<ArrayList<String>>  data = userOrderRepository
+                .findCourierPickupDetailsByCourierListingId(userOrderId);
+
 
         return new ResponseEntity<ArrayList<ArrayList<String>>>(data,HttpStatus.OK);
+    }
+
+    @RequestMapping("users/orders/foodItems/{id}")
+    public ResponseEntity<ArrayList<ArrayList<String>>> viewOrderFoodItem(@PathVariable("id") Long userOrderId){
+
+        ArrayList<ArrayList<String>> food = (ArrayList<ArrayList<String>>)userOrderRepository
+                .findUserOrderFoodItemByUserOrderId(userOrderId);
+
+        return new ResponseEntity<ArrayList<ArrayList<String>>>(food,HttpStatus.OK);
     }
 
 
