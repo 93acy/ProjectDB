@@ -16,11 +16,11 @@ public class HawkerListing {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	private String name;
-	private String address;
-	private String postalCode;
-	private String stallNo;
-	private Long stallImage;
+	private String name = "";
+	private String address = "";
+	private String postalCode = "";
+	private String stallNo= "";
+	private Long stallImage ;
 	private String locationArea;
 	
 	@OneToMany(mappedBy="hawkerListing",cascade=CascadeType.REMOVE)

@@ -43,14 +43,14 @@ public class CourierController {
 	
 	
 	
-	@RequestMapping("/hawkerlisting/All")
-	public ResponseEntity<ArrayList<ArrayList<String>>> selectHawker(){
-		
-		
-		ArrayList<ArrayList<String>> hl = (ArrayList<ArrayList<String>>)hservice.findHawker();	
-		
-		return new ResponseEntity<ArrayList<ArrayList<String>>>(hl,HttpStatus.OK);
-	}
+//	@RequestMapping("/hawkerlisting/All")
+//	public ResponseEntity<ArrayList<ArrayList<String>>> selectHawker(){
+//
+//
+//		ArrayList<ArrayList<String>> hl = (ArrayList<ArrayList<String>>)hservice.findHawker();
+//
+//		return new ResponseEntity<ArrayList<ArrayList<String>>>(hl,HttpStatus.OK);
+//	}
 	
 	
 	
