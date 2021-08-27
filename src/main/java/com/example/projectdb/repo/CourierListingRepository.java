@@ -1,6 +1,7 @@
 package com.example.projectdb.repo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -30,4 +31,32 @@ public interface CourierListingRepository extends JpaRepository<CourierListing, 
 
 
 
+	@Query("SELECT c.id FROM CourierListing c")
+	public List<Long> findAllCourierListingId();
+	
+	//@Query("SELECT cd.foodItem.name FROM CourierListingDetails cd WHERE id = :id")
+	//public String findFoodNameById(@Param("id") Long Id);
+	
+	@Query("SELECT cd.courierListing.id, cd.foodItem.name, cd.pricePerUnit, cd.totalQuantity FROM CourierFoodItemDetails cd WHERE cd.courierListing.id = :id")
+	//@Query("cd.pricePerUnit, cd.totalQuantity FROM CourierFoodItemDetails cd WHERE cd.courierListing.id = :id")
+	public List<List<String>> findCourierListingDetailsByCourierListingId(@Param("id") Long id);
+	
+	@Modifying
+	@Transactional
+	@Query("DELETE FROM CourierFoodItemDetails cd WHERE cd.courierListing.id = :Id")
+	public void deletecourierListingDetail(@Param("Id") Long Id);
+	
+	//@Modifying
+	//@Transactional
+	//@Query("DELETE FROM FoodItem f WHERE f.CourierFoodItemDetails.id = :id")
+	//public void deletecourierListingFoodItem(@Param("id") Long id);
+	
+	
+	@Modifying
+	@Transactional
+	@Query("DELETE FROM CourierListing c WHERE c.id = :Id")
+	public void deletecourierListing(@Param("Id") Long Id);
+	
+	@Query("SELECT cd.id FROM CourierFoodItemDetails cd WHERE cd.courierListing.id = :Id")
+	public List<Long> getCourierListingDetailsIdByCourierListingId(@Param("Id") Long Id);
 }
