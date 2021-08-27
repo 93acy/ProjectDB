@@ -14,12 +14,12 @@ import com.example.projectdb.model.CourierListing;
 public interface CourierListingRepository extends JpaRepository<CourierListing, Long> {
 	
 	@Query("select c.id,c.pickupTime,c.hawkerListing.name,c.hawkerListing.locationArea,"
-			+ "c.pickupLocation,c.orderBeforeTime,c.hawkerListing.id from CourierListing c")
+			+ "c.pickupLocation,c.orderBeforeTime,c.hawkerListing.id from CourierListing c where c.courierOrderStatus='Open'")
 	public ArrayList<ArrayList<String>> findCourierListing();
 	
-	@Query("SELECT f.id,f.name,f.category,f.description,cd.pricePerUnit,cd.id "
-			+ "FROM CourierListing c, CourierFoodItemDetails cd, FoodItem f "
-			+ "WHERE c.id=:id AND f.hawkerListing.id=:hawkerId")
+	@Query("SELECT cd.foodItem.id,cd.foodItem.name,cd.foodItem.category,cd.foodItem.description,cd.pricePerUnit,cd.id "
+			+ "FROM CourierFoodItemDetails cd "
+			+ "WHERE cd.courierListing.id=:id AND cd.foodItem.hawkerListing.id=:hawkerId")
 	public ArrayList<ArrayList<String>> findFoodItemByCourierListingId(
 			@Param("id") Long courierListingId,@Param("hawkerId") Long hawkerId);
 	
@@ -27,7 +27,6 @@ public interface CourierListingRepository extends JpaRepository<CourierListing, 
 	@Transactional
 	@Query(value="UPDATE courier_listing SET hawker_listing_id =:hawkerId WHERE id=:id", nativeQuery=true)
 	public void updateHawkerListingId(@Param("id") Long courierListingId,@Param("hawkerId") Long hawkerId);
-
 
 
 }

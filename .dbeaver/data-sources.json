@@ -1,7 +1,7 @@
 {
 	"folders": {},
 	"connections": {
-		"mysql8-17b6922390c-60caea417bc7dc48": {
+		"mysql8-17b85378628-3dbb1f8f3ea69bdd": {
 			"provider": "mysql",
 			"driver": "mysql8",
 			"name": "localhost",
@@ -13,10 +13,6 @@
 				"url": "jdbc:mysql://localhost:3306/",
 				"home": "C:\\Program Files\\MySQL\\MySQL Server 8.0",
 				"type": "dev",
-				"properties": {
-					"connectTimeout": "20000",
-					"allowPublicKeyRetrieval": "TRUE"
-				},
 				"auth-model": "native",
 				"handlers": {}
 			}

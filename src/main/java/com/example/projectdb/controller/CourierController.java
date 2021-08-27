@@ -97,17 +97,6 @@ public class CourierController {
 	}
 	
 	
-//	@RequestMapping("/courier/foodItemDetail")
-//	public ResponseEntity<String> createFoodItemDetails
-//	(@RequestBody List<CourierFoodItemDetails> courierFoodItemDetails, @RequestParam List<Long> foodIds){
-//
-//		for(int i=0; i < courierFoodItemDetails.size();i++) {
-//			cfrepo.save(courierFoodItemDetails.get(i));
-//			cfrepo.updateCourierDetailId(foodIds.get(i), courierFoodItemDetails.get(i).getId());
-//		}				
-//				
-//		return new ResponseEntity<String>("SUCCESS", HttpStatus.CREATED);
-//	}
 	
 	
 	
@@ -134,8 +123,6 @@ public class CourierController {
 			clservice.updateHawkerListingId(CourierListing.getId(), food.getHawkerListing().getId());
 			
 		}
-		
-		
 				
 		return new ResponseEntity<String>("SUCCESS", HttpStatus.CREATED);
 	}

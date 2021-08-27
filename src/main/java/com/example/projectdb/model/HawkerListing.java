@@ -16,23 +16,21 @@ public class HawkerListing {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-<<<<<<< HEAD
-	private String stallName;
-=======
-	
+
+	private String stallName;	
 	private String name;
->>>>>>> refs/remotes/origin/MergeAttempt
+
 	private String address;
 	private String postalCode;
 	private String stallNo;
 	private Long stallImage;
-<<<<<<< HEAD
+
 	private String foodType;
     private String carbType;
     private String proteinType;
-=======
+
 	private String locationArea;
->>>>>>> refs/remotes/origin/MergeAttempt
+
 	
 	@OneToMany(mappedBy="hawkerListing",cascade=CascadeType.REMOVE)
 	private Collection<CourierListing> courierListings;
