@@ -15,7 +15,7 @@ public class HawkerListing {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	
+	private String name;
 	private String address;
 	private String postalCode;
 	private String stallNo;
@@ -94,6 +94,14 @@ public class HawkerListing {
 
 	public void setFoodItems(Collection<FoodItem> foodItems) {
 		this.foodItems = foodItems;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
     
