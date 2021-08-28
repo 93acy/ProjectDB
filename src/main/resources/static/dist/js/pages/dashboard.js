@@ -158,6 +158,7 @@ $(document).ready(function() {
         hideHover: 'auto'
       });
     }
+    
   function morisLine(json){
       console.log(json);
 
@@ -166,16 +167,17 @@ $(document).ready(function() {
         resize: true,
         data: json,
          /*[
-          {y: '2011 Q1', item1: 2666},
-          {y: '2011 Q2', item1: 2778},
-          {y: '2011 Q3', item1: 4912},
-          {y: '2011 Q4', item1: 3767},
-          {y: '2012 Q1', item1: 6810},
-          {y: '2012 Q2', item1: 5670},
-          {y: '2012 Q3', item1: 4820},
-          {y: '2012 Q4', item1: 15073},
-          {y: '2013 Q1', item1: 10687},
-          {y: '2013 Q2', item1: 8432}
+          {y: 'January', item1: 2666},
+          {y: 'February', item1: 2778},
+          {y: 'March', item1: 4912},
+          {y: 'May', item1: 3767},
+          {y: 'June', item1: 6810},
+          {y: 'July', item1: 5670},
+          {y: 'August', item1: 4820},
+          {y: 'September', item1: 15073},
+          {y: 'October', item1: 10687},
+          {y: 'November', item1: 8432},
+          {y: 'December', item1: 8432}
         ],*/
         xkey: 'y',
         ykeys: ['item1'],
@@ -235,11 +237,12 @@ $(document).ready(function() {
           //context: document.body
         }).done(function(data) {
             //debugger;
-
-            $('#count_listing').text(data.count_listing);
-            $('#count_producttype').text(data.count_producttype);
-            $('#count_user').text(data.count_user);
-            $('#count_visitors').text(data.count_visitors);
+            
+            
+			$('#count_hawkerlisting').text(data.count_hawkerlisting);
+            $('#count_courierlisting').text(data.count_courierlisting);
+            $('#count_orders').text(data.count_orders);
+            $('#count_orderSum').text(data.count_orderSum);
 
             morisArea(data.areachart);
             morisLine(data.linechart);
@@ -247,7 +250,10 @@ $(document).ready(function() {
       });
   }
   getDashboardStatistics();
+  
+   
   });//document.ready
+
 
 
 });

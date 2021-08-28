@@ -23,47 +23,130 @@
             <!-- small box -->
             <div class="small-box bg-aqua">
                 <div class="inner">
-                    <h3 id="count_listing"></h3>
-                    <p>Listings</p>
+                    <h3 id="count_hawkerlisting"></h3>
+                    <p>Hawker Listings</p>
                 </div>
-                <div class="icon">
-                    <i class="ion ion-bag"></i>
+                <div class="icon" >
+                    <i class="glyphicon glyphicon-cutlery"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                
             </div>
         </div>
         <!-- ./col -->
         <div class="col-lg-3">
             <!-- small box -->
-            <div class="small-box bg-green">
+            <div class="small-box bg-olive">
                 <div class="inner">
-                    <h3 id="count_producttype"></h3>
-                    <p>Orders</p>
+                    <h3 id="count_courierlisting"></h3>
+                    <p>Courier Listings</p>
                 </div>
-                <div class="icon">
-                    <i class="ion ion-stats-bars"></i>
+                <div class="icon" style="top:-10px">
+                    <i class="fa fa-motorcycle"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                
             </div>
         </div>
-        <!-- ./col -->
         <div class="col-lg-3">
             <!-- small box -->
             <div class="small-box bg-yellow">
                 <div class="inner">
-                    <h3 id="count_user"></h3>
-                    <p>Earnings</p>
+                    <h3 id="count_orders"></h3>
+                    <p>Orders</p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-person-add"></i>
+                    <i class="glyphicon glyphicon-shopping-cart"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3">
+            <!-- small box -->
+            <div class="small-box bg-maroon">
+                <div class="inner">
+                    <h3>$ <b id="count_orderSum"></b></h3>
+                    <p>Earnings</p>
+                </div>
+                <div class="icon" style="top:-10px">
+                    <i class="fa fa-usd"></i>
+                </div>
+             
             </div>
         </div>
         </div>
     
     <!-- /.row -->
     <!-- Main row -->
+    <div class="row">
+        <!-- Left col -->
+        <section class="col-lg-7 connectedSortable">
+            <!-- Custom tabs (Charts with tabs)-->
+            <div class="nav-tabs-custom">
+                <!-- Tabs within a box -->
+                <ul class="nav nav-tabs pull-right">
+                    <li class="pull-left header"><i class="fa fa-inbox"></i>Hawker Listings</li>
+                </ul>
+              <!-- /.card-header -->
+                <table class="table table-hover text-nowrap">
+        <thead>
+        <tr>
+            <th>Hawker Id</th>
+            <th>Hawker Name</th>           
+            <th>Hawker Postal Code</th>
+            <th>Stall No</th>
+        
+        </tr>
+        </thead>
+             <tr th:each="hawkerlisting:${listHawkers}">
+   <td th:text="${hawkerlisting.id}"></td> 
+   <td th:text="${hawkerlisting.name}"></td>
+   <td th:text="${hawkerlisting.postalCode}"></td>
+   <td th:text="${hawkerlisting.stallNo}"></td>
+ </tr>
+</table>
+              </div>
+       
+             
+           
+            <!-- /.nav-tabs-custom -->
+
+        </section>
+    
+
+         
+        <!-- /.Left col -->
+        <!-- right col (We are only adding the ID to make the widgets sortable)-->
+        <section class="col-lg-5 connectedSortable">
+
+
+            <!-- <!-- solid sales graph -->
+            <div class="box box-solid bg-teal-gradient">
+                <div class="box-header">
+                    <i class="fa fa-th"></i>
+
+                    <h3 class="box-title">Monthly Income</h3>
+
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn bg-teal btn-sm" data-widget="remove"><i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="box-body border-radius-none">
+                    <div class="chart" id="line-chart" style="height: 250px;"></div>
+                </div> -->
+                <!-- /.box-body -->
+
+            </div>
+            <!-- /.box -->
+
+        </section>
+        <!-- right col -->
+    </div>
+    <!-- /.row (main row) -->
+    
+     <!-- Main row -->
     <div class="row">
         <!-- Left col -->
         <section class="col-lg-7 connectedSortable">
@@ -84,11 +167,11 @@
         
         </tr>
         </thead>
-             <tr th:each="hawkerlisting:${listHawkers}">
-   <td th:text="${hawkerlisting.id}"></td> 
-   <td th:text="${hawkerlisting.address}"></td>
-   <td th:text="${hawkerlisting.postalCode}"></td>
-   <td th:text="${hawkerlisting.stallNo}"></td>
+             <tr th:each="courierlisting:${listCouriers}">
+   <td th:text="${courierlisting.id}"></td> 
+   <td th:text="${courierlisting.pickupLocation}"></td>
+   <td th:text="${courierlisting.pickupTime}"></td>
+   <td th:text="${courierlisting.pickupDate}"></td>
  </tr>
 </table>
               </div>
@@ -124,30 +207,7 @@
                     <div class="chart" id="line-chart" style="height: 250px;"></div>
                 </div>
                 <!-- /.box-body -->
-                <div class="box-footer no-border">
-                    <div class="row">
-                        <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                            <input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60" data-fgColor="#39CCCC">
 
-                            <div class="knob-label">Mail-Orders</div>
-                        </div>
-                        <!-- ./col -->
-                        <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                            <input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60" data-fgColor="#39CCCC">
-
-                            <div class="knob-label">Online</div>
-                        </div>
-                        <!-- ./col -->
-                        <div class="col-xs-4 text-center">
-                            <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60" data-fgColor="#39CCCC">
-
-                            <div class="knob-label">In-Store</div>
-                        </div>
-                        <!-- ./col -->
-                    </div>
-                    <!-- /.row -->
-                </div>
-                <!-- /.box-footer -->
             </div>
             <!-- /.box -->
 
@@ -156,6 +216,8 @@
     </div>
     <!-- /.row (main row) -->
 </div>
+</div>
+
 
 <th:block layout:fragment="script">
 <script src="/dist/js/pages/dashboard.js"></script>

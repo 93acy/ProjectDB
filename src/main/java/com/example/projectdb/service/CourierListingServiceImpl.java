@@ -1,6 +1,7 @@
 package com.example.projectdb.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,11 @@ public class CourierListingServiceImpl implements CourierListingService{
 	@Override
 	public ArrayList<ArrayList<String>> findFoodItemByCourierListingId(Long courierListingId, Long hawkerId) {
 		return crepo.findFoodItemByCourierListingId(courierListingId, hawkerId);
+	}
+
+	@Override
+	public List<CourierListing> findAll() {
+		return crepo.findAll();
 	}
 
 }
