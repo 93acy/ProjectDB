@@ -19,5 +19,8 @@ public interface UserOrderDetailRepository extends JpaRepository<UserOrderDetail
 			nativeQuery=true)
 	public void updateOrderIdAndCFID(@Param("userOrderId") Long userOrderId,
 			@Param("courierFoodItemId") Long courierFoodItemId,@Param("userOrderDetailId")Long userOrderDetailId);
+	
+	@Query(value="select quantity from user_order_detail where id=:userOrderDetailId",nativeQuery=true)
+	public Integer getOrderQuantityById(@Param("userOrderDetailId")Long userOrderDetailId);
 
 }

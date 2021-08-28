@@ -21,9 +21,11 @@ public interface UserService {
 	
 	public void updateOrderIdAndCFID(Long userOrderId, Long courierFoodItemId,Long userOrderDetailId);
 
-	User findByUsernameAndPassword(String name, String password);
+	public User findByUsernameAndPassword(String name, String password);
 	
-	User findByUsername(String username);
+	public User findByUsername(String username);
+	
+	public Integer getOrderQuantityById(Long userOrderDetailId);
 
 
 }

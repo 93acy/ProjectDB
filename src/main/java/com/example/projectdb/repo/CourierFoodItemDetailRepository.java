@@ -23,6 +23,17 @@ public interface CourierFoodItemDetailRepository extends JpaRepository<CourierFo
 			+ "WHERE id=:courierDetailId", nativeQuery=true)
 	public void updateCourieListingId(@Param("courierDetailId") Long courierDetailId,
 			@Param("courierListingId") Long courierListingId);
+	
+	
+	@Query(value="select total_quantity from courier_food_item_details where id=:courierFoodItemDetailId",nativeQuery=true)
+	public Integer getTotalQuantityById(@Param("courierFoodItemDetailId") Long courierFoodItemDetailId);
+	
+	@Modifying
+	@Transactional
+	@Query(value="update courier_food_item_details set total_quantity = :newTotalQuantity "
+			+ "where id=:courierFoodItemDetailId",nativeQuery=true)
+	public Integer updateTotalQuantityById(@Param("courierFoodItemDetailId") Long courierFoodItemDetailId,
+			@Param("newTotalQuantity")Integer newTotalQuantity);
 
 
 }

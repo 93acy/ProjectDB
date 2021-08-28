@@ -1,5 +1,6 @@
 package com.example.projectdb.service;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +31,21 @@ public class CourierFoodItemDetailServiceImpl implements CourierFoodItemDetailSe
 		cfrepo.updateCourieListingId(courierFoodItemDetailId, id);
 		
 	}
+
+	@Override
+	public Integer getTotalQuantityById(Long courierFoodItemDetailId) {
+		return cfrepo.getTotalQuantityById(courierFoodItemDetailId);
+	}
+
+	@Override
+	public Integer updateTotalQuantityById(Long courierFoodItemDetailId, Integer newTotalQuantity) {
+		cfrepo.updateTotalQuantityById(courierFoodItemDetailId,newTotalQuantity);
+		return null;
+	}
+}
+		
+	
 	
 
 
-}
+

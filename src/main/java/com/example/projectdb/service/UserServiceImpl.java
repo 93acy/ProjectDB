@@ -71,5 +71,11 @@ public class UserServiceImpl implements UserService{
 	public User findByUsername(String username) {
 		return urepo.findByUsername(username);
 	}
+	
+	@Override
+	public Integer getOrderQuantityById(Long userOrderDetailId) {
+		
+		return uodRepo.getOrderQuantityById(userOrderDetailId);
+	}
 
 }

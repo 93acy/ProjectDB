@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.projectdb.model.User;
 import com.example.projectdb.model.UserOrder;
 import com.example.projectdb.model.UserOrderDetail;
+import com.example.projectdb.repo.UserOrderRepository;
 import com.example.projectdb.repo.UserRepository;
+import com.example.projectdb.service.CourierFoodItemDetailService;
 import com.example.projectdb.service.CourierListingService;
 import com.example.projectdb.service.UserService;
 
@@ -29,10 +31,16 @@ public class UserController {
     UserRepository userRepository;
     
     @Autowired
+    UserOrderRepository userOrderRepository;
+    
+    @Autowired
     CourierListingService clService;
     
     @Autowired
     UserService uService;
+    
+    @Autowired
+    CourierFoodItemDetailService cfService;
 
     @PostMapping("/register")
     public ResponseEntity<String> registerUser(@RequestBody User newUser) {
@@ -98,14 +106,57 @@ public class UserController {
     public ResponseEntity<String> createUserOrderDetail (@RequestBody List<UserOrderDetail> userOrderDetail,
     		@RequestParam Long userOrderId,@RequestParam List<Long> courierFoodItemDetail){
     	
+    	Integer orderQuantity = 0;
+    	Integer totalQuantity = 0;
+    	Integer newTotalQuantity =0;
     	for(int i =0;i<userOrderDetail.size();i++) {
     		
     		uService.saveUserOrderDetail(userOrderDetail.get(i));
     		
     		uService.updateOrderIdAndCFID(userOrderId,courierFoodItemDetail.get(i) , userOrderDetail.get(i).getId());
+    		
+    		//get orderQuantity 
+    		orderQuantity= uService.getOrderQuantityById(userOrderDetail.get(i).getId());
+    		
+    		//get current totalQuantity
+    		totalQuantity= cfService.getTotalQuantityById(courierFoodItemDetail.get(i));
+    		
+    		//add
+    		newTotalQuantity = orderQuantity+totalQuantity;
+    		
+    		//update totalQuantity
+    		cfService.updateTotalQuantityById(courierFoodItemDetail.get(i),newTotalQuantity);
+    		
+    		
     	}
     	
     	return new ResponseEntity<String>("SUCCESS", HttpStatus.CREATED);
     };
+    
+    @RequestMapping("/users/courierListingPickup/{id}")
+    public ResponseEntity<ArrayList<ArrayList<String>>> viewPickupDetails(@PathVariable("id") Long userOrderId)
+    {
+
+        ArrayList<ArrayList<String>>  data = userOrderRepository
+                .findCourierPickupDetailsByCourierListingId(userOrderId);
+
+
+        return new ResponseEntity<ArrayList<ArrayList<String>>>(data,HttpStatus.OK);
+    }
+
+    @RequestMapping("users/orders/foodItems/{id}")
+    public ResponseEntity<ArrayList<ArrayList<String>>> viewOrderFoodItem(@PathVariable("id") Long userOrderId){
+
+        ArrayList<ArrayList<String>> food = (ArrayList<ArrayList<String>>)userOrderRepository
+                .findUserOrderFoodItemByUserOrderId(userOrderId);
+
+        return new ResponseEntity<ArrayList<ArrayList<String>>>(food,HttpStatus.OK);
+    }
+
+    @RequestMapping("users/orders/orderStatus/update")
+    public ResponseEntity<String> updateUserOrderStatus(@RequestParam("id") Long userOrderId,@RequestParam String status){
+        userOrderRepository.updateUserOrderStatus(userOrderId,status);
+        return new ResponseEntity<String>("SUCCESS", HttpStatus.CREATED);
+    }
     
 }

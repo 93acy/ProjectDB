@@ -1,5 +1,7 @@
 package com.example.projectdb.repo;
 
+import java.util.ArrayList;
+
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -19,11 +21,19 @@ public interface UserOrderRepository extends JpaRepository<UserOrder, Long> {
 	public void updateCourierListingId(@Param("userOrderId") Long userOrderId,
 			@Param("courierListingId") Long courierListingId);
 	
-//	@Query(value="update user_order set courier_listing_id = :courierListingId "
-//			+ "where id = :userOrderId",
-//			nativeQuery=true)
-//	public void updateCourierListingId(@Param("userOrderId") Long userOrderId,
-//			@Param("courierListingId") Long courierListingId);
+	@Query("SELECT uo.courierListing.pickupDate,uo.courierListing.pickupLocation," +
+            "uo.courierListing.pickupTime,uo.courierListing.hawkerListing.name FROM UserOrder uo WHERE uo.id=:id")
+	public ArrayList<ArrayList<String>> findCourierPickupDetailsByCourierListingId(@Param("id") Long userOrderId);
+
+	@Query("SELECT uod.id,uod.courierFoodItemDetails.foodItem.name,uod.quantity " +
+            "FROM UserOrderDetail uod WHERE uod.userOrder.id=:id")
+	public ArrayList<ArrayList<String>> findUserOrderFoodItemByUserOrderId(@Param("id") Long userOrderId);
+
+	@Modifying
+	@Transactional
+	@Query ("UPDATE UserOrder uo SET uo.userOrderStatus =:status WHERE uo.id=:id")
+	public void updateUserOrderStatus(@Param("id") Long userOrderId,@Param("status") String status);
+
 
 
 }
