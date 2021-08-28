@@ -245,7 +245,7 @@ $(document).ready(function() {
             $('#count_orderSum').text(data.count_orderSum);
 
             morisArea(data.areachart);
-            morisLine(data.linechart);
+            morisLine(data.line-chart);
             morisDonut(data.donutchart);
       });
   }

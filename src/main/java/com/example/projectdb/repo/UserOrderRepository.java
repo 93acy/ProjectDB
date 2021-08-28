@@ -40,6 +40,9 @@ public interface UserOrderRepository extends JpaRepository<UserOrder, Long> {
 
 	@Query("SELECT SUM(uo.orderValue) FROM UserOrder uo")
 	public double orderSum();
+	
+	@Query("SELECT SUM(uo.orderValue) FROM UserOrder uo WHERE uo.courierListing.pickupDate LIKE '%08/2021'")
+	public double augSum();
 
 
 //	@Query()

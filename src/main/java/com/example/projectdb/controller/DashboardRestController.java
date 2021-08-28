@@ -35,12 +35,14 @@ public class DashboardRestController {
         long courierListingCount = crepo.count();
         long ordersCount = uorepo.count();
         double orderSum = uorepo.orderSum();
+        double augSum = uorepo.augSum();
 
         HashMap<String, Object> map = new HashMap<>();
         map.put("count_hawkerlisting", hawkerListingCount);
         map.put("count_courierlisting", courierListingCount);
         map.put("count_orders", ordersCount);
         map.put("count_orderSum", orderSum);
+        map.put("count_augSum", augSum);
 
 		
 		 /* //Area Chart List<MorisArea> morisAreas = new ArrayList<>();
@@ -59,7 +61,7 @@ public class DashboardRestController {
 		  
 		  //Line Chart 
           List<MorisLine> morisLine = new ArrayList<>(); 
-          morisLine.add(new MorisLine("January", 2666 )); 
+          morisLine.add(new MorisLine("January", augSum)); 
           morisLine.add(new MorisLine("February", 2778 ));
 		  morisLine.add(new MorisLine("March", 4912 )); 
 		  morisLine.add(new MorisLine("April", 3767 )); 

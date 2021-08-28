@@ -84,13 +84,13 @@
             <div class="nav-tabs-custom">
                 <!-- Tabs within a box -->
                 <ul class="nav nav-tabs pull-right">
-                    <li class="pull-left header"><i class="fa fa-inbox"></i>Hawker Listings</li>
+                    <li class="pull-left header"><i class="fa fa-cutlery"></i> Hawker Listings</li>
                 </ul>
               <!-- /.card-header -->
                 <table class="table table-hover text-nowrap">
         <thead>
         <tr>
-            <th>Hawker Id</th>
+            <th>Id</th>
             <th>Hawker Name</th>           
             <th>Hawker Postal Code</th>
             <th>Stall No</th>
@@ -154,22 +154,26 @@
             <div class="nav-tabs-custom">
                 <!-- Tabs within a box -->
                 <ul class="nav nav-tabs pull-right">
-                    <li class="pull-left header"><i class="fa fa-inbox"></i> Listings</li>
+                    <li class="pull-left header"><i class="fa fa-motorcycle"></i> Courier Listings</li>
                 </ul>
               <!-- /.card-header -->
                 <table class="table table-hover text-nowrap">
         <thead>
         <tr>
+            <th>Id</th>
             <th>Hawker Id</th>
-            <th>Course Name</th>           
-            <th>Course Start Date</th>
-            <th>Capacity</th>
+            <th>Pick Up Location</th>
+            <th>Order Before Time</th>           
+            <th>Pick Up Time</th>
+            <th>Pick Up Date</th>
         
         </tr>
         </thead>
              <tr th:each="courierlisting:${listCouriers}">
    <td th:text="${courierlisting.id}"></td> 
+   <td th:text="${courierlisting.hawkerListing.id}"></td>
    <td th:text="${courierlisting.pickupLocation}"></td>
+   <td th:text="${courierlisting.orderBeforeTime}"></td>
    <td th:text="${courierlisting.pickupTime}"></td>
    <td th:text="${courierlisting.pickupDate}"></td>
  </tr>

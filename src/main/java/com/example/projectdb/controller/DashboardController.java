@@ -40,12 +40,6 @@ public class DashboardController {
 		return "index";
 	}
 	
-//	@GetMapping("/")
-//	public String listCouriers(Model model) {
-//		List<CourierListing> listCouriers = cs.findAll();
-//		model.addAttribute("listCouriers", listCouriers);
-//		
-//		return "index";
-//	}
+
 
 }
