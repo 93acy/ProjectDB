@@ -59,9 +59,6 @@ public class CourierListingServiceImpl implements CourierListingService{
 		crepo.deletecourierListing(Id);
 	};
 
-	@Override
-	public List<CourierListing> findAll() {
-		return crepo.findAll();
-	}
+	
 
 }

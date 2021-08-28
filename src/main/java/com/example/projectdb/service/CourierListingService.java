@@ -27,6 +27,6 @@ public interface CourierListingService {
 	
 	public void deletecourierListing(Long Id);
 
-	public List<CourierListing> findAll();
+
 
 }
