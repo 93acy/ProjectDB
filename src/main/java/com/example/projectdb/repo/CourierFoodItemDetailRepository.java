@@ -19,7 +19,7 @@ public interface CourierFoodItemDetailRepository extends JpaRepository<CourierFo
 	
 	@Modifying
 	@Transactional
-	@Query(value="UPDATE courier_food_item_details SET courier_listing_id =:courierListingId "
+	@Query(value="UPDATE courier_food_item_details SET courier_listing_id =:courierListingId,total_quantity=0 "
 			+ "WHERE id=:courierDetailId", nativeQuery=true)
 	public void updateCourieListingId(@Param("courierDetailId") Long courierDetailId,
 			@Param("courierListingId") Long courierListingId);
