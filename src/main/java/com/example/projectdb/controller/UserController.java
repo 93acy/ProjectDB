@@ -96,5 +96,11 @@ public class UserController {
         return new ResponseEntity<ArrayList<ArrayList<String>>>(food,HttpStatus.OK);
     }
 
+    @RequestMapping("users/orders/orderStatus/update")
+    public ResponseEntity<String> updateUserOrderStatus(@PathVariable("id") Long userOrderId,@RequestParam String status){
+        userOrderRepository.updateUserOrderStatus(userOrderId,status);
+        return new ResponseEntity<String>("SUCCESS", HttpStatus.CREATED);
+    }
+
 
 }

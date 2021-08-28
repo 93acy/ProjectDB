@@ -104,11 +104,11 @@ public class CourierController {
 //				
 //		return new ResponseEntity<String>("SUCCESS", HttpStatus.CREATED);
 //	}
-	
-	
-	
+
+
 	@RequestMapping("/courier/courierListing")
-	public ResponseEntity<String> createCourierListing(@RequestBody CourierListing CourierListing,
+	public ResponseEntity<String> createCourierListing
+			(@RequestBody CourierListing CourierListing,
 			@RequestParam ArrayList<String> courierFoodItemDetailIds,
 			@RequestParam ArrayList<String> FoodID){
 

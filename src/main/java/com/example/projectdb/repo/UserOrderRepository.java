@@ -2,9 +2,11 @@ package com.example.projectdb.repo;
 
 import com.example.projectdb.model.UserOrder;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 
 public interface UserOrderRepository extends JpaRepository<UserOrder,Long> {
@@ -17,5 +19,9 @@ public interface UserOrderRepository extends JpaRepository<UserOrder,Long> {
             "FROM UserOrderDetail uod WHERE uod.userOrder.id=:id")
     public ArrayList<ArrayList<String>> findUserOrderFoodItemByUserOrderId(@Param("id") Long userOrderId);
 
+    @Modifying
+    @Transactional
+    @Query ("UPDATE UserOrder uo SET uo.userOrderStatus =:status WHERE uo.id=:id")
+    public void updateUserOrderStatus(@Param("id") Long userOrderId,@Param("status") String status);
 
 }
