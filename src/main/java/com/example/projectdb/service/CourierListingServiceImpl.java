@@ -35,6 +35,29 @@ public class CourierListingServiceImpl implements CourierListingService{
 	public ArrayList<ArrayList<String>> findFoodItemByCourierListingId(Long courierListingId, Long hawkerId) {
 		return crepo.findFoodItemByCourierListingId(courierListingId, hawkerId);
 	}
+	
+	@Override
+	public List<CourierListing> findAll() {
+		return crepo.findAll();
+	}
+	
+	
+	public List<Long> findAllCourierListingId(){
+		return crepo.findAllCourierListingId();
+	};
+	public List<List<String>> findCourierListingDetailsByCourierListingId(Long id){
+		return crepo.findCourierListingDetailsByCourierListingId(id);
+	};
+	public List<Long> getCourierListingDetailsIdByCourierListingId(Long Id){
+		return crepo.getCourierListingDetailsIdByCourierListingId(Id);
+	};
+
+	public void deletecourierListingDetail(Long Id) {
+		crepo.deletecourierListingDetail(Id);
+	};
+	public void deletecourierListing(Long Id) {
+		crepo.deletecourierListing(Id);
+	};
 
 	@Override
 	public List<CourierListing> findAll() {

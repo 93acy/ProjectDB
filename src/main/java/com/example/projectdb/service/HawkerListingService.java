@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface HawkerListingService {
 
-    public List<HawkerListing> findAll();
+	public List<HawkerListing> findAll();
 
     public HawkerListing addHawkerListing(HawkerListing newHawkerListing);
 

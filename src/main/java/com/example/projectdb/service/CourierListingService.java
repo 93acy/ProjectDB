@@ -14,6 +14,18 @@ public interface CourierListingService {
 	public ArrayList<ArrayList<String>> findCourierListing();
 
 	public ArrayList<ArrayList<String>> findFoodItemByCourierListingId(Long courierListingId, Long hawkerId);
+	
+	public List<CourierListing> findAll();
+	
+	public List<Long> findAllCourierListingId();
+	
+	public List<List<String>> findCourierListingDetailsByCourierListingId(Long id);
+	
+	public List<Long> getCourierListingDetailsIdByCourierListingId(Long Id);
+	
+	public void deletecourierListingDetail(Long Id);
+	
+	public void deletecourierListing(Long Id);
 
 	public List<CourierListing> findAll();
 

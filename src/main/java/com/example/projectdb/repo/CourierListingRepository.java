@@ -1,6 +1,7 @@
 package com.example.projectdb.repo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -14,12 +15,12 @@ import com.example.projectdb.model.CourierListing;
 public interface CourierListingRepository extends JpaRepository<CourierListing, Long> {
 	
 	@Query("select c.id,c.pickupTime,c.hawkerListing.name,c.hawkerListing.locationArea,"
-			+ "c.pickupLocation,c.orderBeforeTime,c.hawkerListing.id from CourierListing c")
+			+ "c.pickupLocation,c.orderBeforeTime,c.hawkerListing.id from CourierListing c where c.courierOrderStatus='Open'")
 	public ArrayList<ArrayList<String>> findCourierListing();
 	
-	@Query("SELECT f.id,f.name,f.category,f.description,cd.pricePerUnit,cd.id "
-			+ "FROM CourierListing c, CourierFoodItemDetails cd, FoodItem f "
-			+ "WHERE c.id=:id AND f.hawkerListing.id=:hawkerId")
+	@Query("SELECT cd.foodItem.id,cd.foodItem.name,cd.foodItem.category,cd.foodItem.description,cd.pricePerUnit,cd.id "
+			+ "FROM CourierFoodItemDetails cd "
+			+ "WHERE cd.courierListing.id=:id AND cd.foodItem.hawkerListing.id=:hawkerId")
 	public ArrayList<ArrayList<String>> findFoodItemByCourierListingId(
 			@Param("id") Long courierListingId,@Param("hawkerId") Long hawkerId);
 	
@@ -27,7 +28,27 @@ public interface CourierListingRepository extends JpaRepository<CourierListing, 
 	@Transactional
 	@Query(value="UPDATE courier_listing SET hawker_listing_id =:hawkerId WHERE id=:id", nativeQuery=true)
 	public void updateHawkerListingId(@Param("id") Long courierListingId,@Param("hawkerId") Long hawkerId);
-
+	
+	@Query("SELECT c.id FROM CourierListing c")
+	public List<Long> findAllCourierListingId();
+	
+	
+	@Query("SELECT cd.courierListing.id, cd.foodItem.name, cd.pricePerUnit, cd.totalQuantity FROM CourierFoodItemDetails cd WHERE cd.courierListing.id = :id")
+	public List<List<String>> findCourierListingDetailsByCourierListingId(@Param("id") Long id);
+	
+	@Modifying
+	@Transactional
+	@Query("DELETE FROM CourierFoodItemDetails cd WHERE cd.courierListing.id = :Id")
+	public void deletecourierListingDetail(@Param("Id") Long Id);
+	
+	
+	@Modifying
+	@Transactional
+	@Query("DELETE FROM CourierListing c WHERE c.id = :Id")
+	public void deletecourierListing(@Param("Id") Long Id);
+	
+	@Query("SELECT cd.id FROM CourierFoodItemDetails cd WHERE cd.courierListing.id = :Id")
+	public List<Long> getCourierListingDetailsIdByCourierListingId(@Param("Id") Long Id);
 
 
 }
