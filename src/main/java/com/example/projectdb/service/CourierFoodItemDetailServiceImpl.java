@@ -42,6 +42,8 @@ public class CourierFoodItemDetailServiceImpl implements CourierFoodItemDetailSe
 		cfrepo.updateTotalQuantityById(courierFoodItemDetailId,newTotalQuantity);
 		return null;
 	}
+
+
 }
 		
 	

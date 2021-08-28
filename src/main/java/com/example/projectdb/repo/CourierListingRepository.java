@@ -49,6 +49,9 @@ public interface CourierListingRepository extends JpaRepository<CourierListing, 
 	
 	@Query("SELECT cd.id FROM CourierFoodItemDetails cd WHERE cd.courierListing.id = :Id")
 	public List<Long> getCourierListingDetailsIdByCourierListingId(@Param("Id") Long Id);
+	
+	@Query("SELECT cl.hawkerListing.name FROM CourierListing cl WHERE id = :courierListingId")
+	public String findHawkerNameByCLid(@Param("courierListingId") Long courierListingId);
 
 
 }

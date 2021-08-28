@@ -3,7 +3,8 @@ package com.example.projectdb.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.projectdb.config.JwtTokenUtil;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,24 +15,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.projectdb.config.JwtTokenUtil;
 import com.example.projectdb.model.User;
 import com.example.projectdb.model.UserOrder;
 import com.example.projectdb.model.UserOrderDetail;
-import com.example.projectdb.repo.UserOrderRepository;
-import com.example.projectdb.repo.UserRepository;
 import com.example.projectdb.service.CourierFoodItemDetailService;
 import com.example.projectdb.service.CourierListingService;
+import com.example.projectdb.service.UserOrderService;
 import com.example.projectdb.service.UserService;
-
-import javax.servlet.http.HttpServletRequest;
 
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
 
-    @Autowired
-    UserRepository userRepository;
+//    @Autowired
+//    UserRepository userRepository;
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
@@ -40,7 +39,7 @@ public class UserController {
     HttpServletRequest request;
 
     @Autowired
-    UserOrderRepository userOrderRepository;
+    UserOrderService uoService;
 
     @Autowired
     CourierListingService clService;
@@ -54,7 +53,7 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<String> registerUser(@RequestBody User newUser) {
-        List<User> users = userRepository.findAll();
+        List<User> users = uService.findAll();
         System.out.println("New user: " + newUser.toString());
         for (User user : users) {
             if (user.equals(newUser)) {
@@ -62,17 +61,17 @@ public class UserController {
                 return new ResponseEntity<String>("Failed", HttpStatus.BAD_REQUEST);
             }
         }
-        userRepository.save(newUser);
+        uService.save(newUser);
         return new ResponseEntity<String>("Success", HttpStatus.CREATED);
     }
 
     @PostMapping("/login")
     public ResponseEntity<String> loginUser(@RequestBody User user) {
-        List<User> users = userRepository.findAll();
+        List<User> users = uService.findAll();
         for (User other : users) {
             if (other.equals(user)) {
 //                other.setLoggedIn(true);
-                userRepository.save(other);
+            	uService.save(other);
                 return new ResponseEntity<String>("Success", HttpStatus.CREATED);
             }
         }
@@ -103,11 +102,13 @@ public class UserController {
     @RequestMapping("/user/createOrder")
     public ResponseEntity<String> createUserOrder(@RequestBody UserOrder userOrder,
                                                   @RequestParam Long courierListngId) {
+    	String username = jwtTokenUtil.getUsernameFromToken(request.getHeader("Authorization").substring(7));
+        Long userId = uService.findIdByUsername(username);
 
         uService.saveUserOrder(userOrder);
         Long userOrderId = userOrder.getId();
 
-        uService.updateCourierListingId(userOrderId, courierListngId);
+        uoService.updateCourierListingIdAndUserId(userOrderId, courierListngId,userId);
 
         return new ResponseEntity<String>(userOrderId.toString(), HttpStatus.OK);
 
@@ -149,7 +150,7 @@ public class UserController {
     @RequestMapping("/users/courierListingPickup/{id}")
     public ResponseEntity<ArrayList<ArrayList<String>>> viewPickupDetails(@PathVariable("id") Long userOrderId) {
 
-        ArrayList<ArrayList<String>> data = userOrderRepository
+        ArrayList<ArrayList<String>> data = uoService
                 .findCourierPickupDetailsByCourierListingId(userOrderId);
 
 
@@ -159,7 +160,7 @@ public class UserController {
     @RequestMapping("users/orders/foodItems/{id}")
     public ResponseEntity<ArrayList<ArrayList<String>>> viewOrderFoodItem(@PathVariable("id") Long userOrderId) {
 
-        ArrayList<ArrayList<String>> food = (ArrayList<ArrayList<String>>) userOrderRepository
+        ArrayList<ArrayList<String>> food = (ArrayList<ArrayList<String>>) uoService
                 .findUserOrderFoodItemByUserOrderId(userOrderId);
 
         return new ResponseEntity<ArrayList<ArrayList<String>>>(food, HttpStatus.OK);
@@ -167,13 +168,29 @@ public class UserController {
 
     @RequestMapping("users/orders/orderStatus/update")
     public ResponseEntity<String> updateUserOrderStatus(@RequestParam("id") Long userOrderId, @RequestParam String status) {
-        userOrderRepository.updateUserOrderStatus(userOrderId, status);
+    	uoService.updateUserOrderStatus(userOrderId, status);
         return new ResponseEntity<String>("SUCCESS", HttpStatus.CREATED);
     }
 
-//    public ResponseEntity<List<List<String>>> getAllUserOrderByUserId() {
-//        String username = jwtTokenUtil.getUsernameFromToken(request.getHeader("Authorization").substring(7));
-//        Long userId = userRepository.findIdByUsername(username);
-//        //findIdbyUsername}
-//    }
+    @RequestMapping("/users/viewOrderData")
+    public ResponseEntity<ArrayList<ArrayList<String>>> viewOrderDta(){
+    	 String username = jwtTokenUtil.getUsernameFromToken(request.getHeader("Authorization").substring(7));
+         Long userId = uService.findIdByUsername(username);
+         
+         ArrayList<ArrayList<String>> orderData =  uoService.getUserOrderId(userId);
+         ArrayList<String> hawkerName = new ArrayList<>();
+         for(ArrayList<String> s:orderData) {
+        	 for(int i=0;i<orderData.size();i++) {       		 
+        		 hawkerName.add(clService.findHawkerNameByCLid(Long.parseLong(s.get(1))));
+        		 orderData.add(hawkerName);
+        	 }
+         }
+
+         
+         return new ResponseEntity<ArrayList<ArrayList<String>>>(orderData, HttpStatus.OK);
+    }
+    
 }
+   
+
+    

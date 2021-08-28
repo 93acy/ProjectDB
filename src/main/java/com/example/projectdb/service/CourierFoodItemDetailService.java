@@ -1,5 +1,7 @@
 package com.example.projectdb.service;
 
+import org.springframework.data.repository.query.Param;
+
 import com.example.projectdb.model.CourierFoodItemDetails;
 
 public interface CourierFoodItemDetailService {
@@ -13,6 +15,8 @@ public interface CourierFoodItemDetailService {
 	public Integer getTotalQuantityById(Long courierFoodItemDetailId);
 	
 	public Integer updateTotalQuantityById(Long courierFoodItemDetailId ,Integer newTotalQuantity);
+	
+
 
 
 

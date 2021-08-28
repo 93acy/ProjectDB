@@ -3,6 +3,8 @@ package com.example.projectdb.service;
 
 import java.util.List;
 
+import org.springframework.data.repository.query.Param;
+
 import com.example.projectdb.model.User;
 import com.example.projectdb.model.UserOrder;
 import com.example.projectdb.model.UserOrderDetail;
@@ -26,6 +28,8 @@ public interface UserService {
 	public User findByUsername(String username);
 	
 	public Integer getOrderQuantityById(Long userOrderDetailId);
+	
+	public Long findIdByUsername(String username);
 
 
 }

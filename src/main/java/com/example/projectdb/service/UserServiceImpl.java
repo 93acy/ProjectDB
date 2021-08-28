@@ -42,12 +42,6 @@ public class UserServiceImpl implements UserService{
 		
 	}
 
-	@Override
-	public void updateCourierListingId(Long userOrderId, Long courierListingId) {
-		
-		uorepo.updateCourierListingId( userOrderId,  courierListingId);
-		
-	}
 
 	@Override
 	public void saveUserOrderDetail(UserOrderDetail userOrderDetail) {
@@ -76,6 +70,12 @@ public class UserServiceImpl implements UserService{
 	public Integer getOrderQuantityById(Long userOrderDetailId) {
 		
 		return uodRepo.getOrderQuantityById(userOrderDetailId);
+	}
+
+	@Override
+	public Long findIdByUsername(String username) {
+		
+		return urepo.findIdByUsername(username);
 	}
 
 }

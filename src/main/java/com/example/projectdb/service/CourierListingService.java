@@ -26,6 +26,8 @@ public interface CourierListingService {
 	public void deletecourierListingDetail(Long Id);
 	
 	public void deletecourierListing(Long Id);
+	
+	public String findHawkerNameByCLid(Long courierListingId);
 
 
 

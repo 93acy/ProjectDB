@@ -16,10 +16,11 @@ public interface UserOrderRepository extends JpaRepository<UserOrder, Long> {
 	@Modifying
 	@Transactional
 	@Query(value="update user_order set courier_listing_id = :courierListingId, "
-			+ "user_order_status = 'Pending to receive' where id = :userOrderId",
+			+ "user_order_status = 'Pending to receive',user_id=:userId where id = :userOrderId",
 			nativeQuery=true)
-	public void updateCourierListingId(@Param("userOrderId") Long userOrderId,
-			@Param("courierListingId") Long courierListingId);
+	public void updateCourierListingIdAndUserId(@Param("userOrderId") Long userOrderId,
+			@Param("courierListingId") Long courierListingId,
+			@Param("userId") Long userId);
 
 	@Query("SELECT uo.courierListing.pickupDate,uo.courierListing.pickupLocation," +
             "uo.courierListing.pickupTime,uo.courierListing.hawkerListing.name FROM UserOrder uo WHERE uo.id=:id")
@@ -41,9 +42,8 @@ public interface UserOrderRepository extends JpaRepository<UserOrder, Long> {
 	@Query("SELECT SUM(uo.orderValue) FROM UserOrder uo")
 	public double orderSum();
 
-
-//	@Query()
-//	public void viewUserPastOrders(@Param("id")Long userId)
+	@Query("SELECT uo.id,uo.courierListing.id,uo.orderValue,uo.userOrderStatus from UserOrder uo where uo.user.id=:id")
+	public ArrayList<ArrayList<String>> findOrderDataByUserId(@Param("id") Long userId);
 
 
 

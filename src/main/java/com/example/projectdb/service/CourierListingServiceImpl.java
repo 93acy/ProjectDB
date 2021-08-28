@@ -58,6 +58,12 @@ public class CourierListingServiceImpl implements CourierListingService{
 	public void deletecourierListing(Long Id) {
 		crepo.deletecourierListing(Id);
 	};
+	
+	@Override
+	public String findHawkerNameByCLid(Long courierListingId) {
+		
+		return crepo.findHawkerNameByCLid(courierListingId);
+	}
 
 	
 
