@@ -42,5 +42,9 @@ public interface UserOrderRepository extends JpaRepository<UserOrder, Long> {
 	public double orderSum();
 
 
+//	@Query()
+//	public void viewUserPastOrders(@Param("id")Long userId)
+
+
 
 }
