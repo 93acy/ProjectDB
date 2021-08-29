@@ -45,9 +45,10 @@ public class HawkerListingController{
     public ResponseEntity<String> addHawkerListing(@RequestBody HawkerListing hawkerlisting){
         String username = jwtTokenUtil.getUsernameFromToken(request.getHeader("Authorization").substring(7));
         //findIdbyUsername
+        if (!hrepo.hawkerNameExist(hawkerlisting.getName())){
         hlservice.addHawkerListing(hawkerlisting);
-        return new ResponseEntity<String>("Success", HttpStatus.CREATED);
-
+        return new ResponseEntity<String>("Success", HttpStatus.CREATED);}
+        else{ return new ResponseEntity<String>("Not Successful", HttpStatus.BAD_REQUEST);}
     }
 
     @PutMapping("/update")

@@ -90,8 +90,7 @@ public class HawkerListing {
 	public void setStallImage(Long stallImage) {
 		this.stallImage = stallImage;
 	}
-	
-	
+
 
 	public String getLocationArea() {
 		return locationArea;
