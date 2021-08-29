@@ -64,6 +64,10 @@ public class CourierListingServiceImpl implements CourierListingService{
 		
 		return crepo.findHawkerNameByCLid(courierListingId);
 	}
+	
+	public void updatecourierListing(Long Id) {
+		crepo.updatecourierListing(Id);
+	}
 
 	
 

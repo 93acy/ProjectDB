@@ -1,6 +1,7 @@
 package com.example.projectdb.repo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -44,6 +45,13 @@ public interface UserOrderRepository extends JpaRepository<UserOrder, Long> {
 
 	@Query("SELECT uo.id,uo.courierListing.id,uo.orderValue,uo.userOrderStatus from UserOrder uo where uo.user.id=:id")
 	public ArrayList<ArrayList<String>> findOrderDataByUserId(@Param("id") Long userId);
+	
+    @Query("SELECT uo.id, uo.courierListing.id, uo.user.name, uo.userOrderStatus FROM UserOrder uo WHERE uo.courierListing.id = :id")
+    public List<List<String>> findByCourierListingId(@Param("id") Long id);
+    
+    
+    @Query("SELECT ud.userOrder.id, ud.courierFoodItemDetails.foodItem.name, ud.quantity FROM UserOrderDetail ud WHERE ud.userOrder.id = :id")
+    public List<List<String>> findUserDetailsByCourierListingId(@Param("id") Long id);
 
 
 
