@@ -34,8 +34,8 @@ public class DashboardRestController {
         long hawkerListingCount = hrepo.count();
         long courierListingCount = crepo.count();
         long ordersCount = uorepo.count();
-        double orderSum = uorepo.orderSum();
-        double augSum = uorepo.augSum();
+        Double orderSum = uorepo.orderSum();
+        Double augSum = uorepo.augSum();
 
         HashMap<String, Object> map = new HashMap<>();
         map.put("count_hawkerlisting", hawkerListingCount);
