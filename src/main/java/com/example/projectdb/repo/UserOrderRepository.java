@@ -15,8 +15,8 @@ public interface UserOrderRepository extends JpaRepository<UserOrder, Long> {
 
 	@Modifying
 	@Transactional
-	@Query(value="update user_order set courier_listing_id = :courierListingId, "
-			+ "user_order_status = 'Pending to receive',user_id=:userId where id = :userOrderId",
+	@Query(value="update user_order set courier_listing_id =:courierListingId, "
+			+ "user_order_status = 'Pending to receive',user_id=:userId where id =:userOrderId",
 			nativeQuery=true)
 	public void updateCourierListingIdAndUserId(@Param("userOrderId") Long userOrderId,
 			@Param("courierListingId") Long courierListingId,
