@@ -64,7 +64,7 @@
             <!-- small box -->
             <div class="small-box bg-maroon">
                 <div class="inner">
-                    <h3>$ <b id="count_orderSum"></b></h3>
+                    <h3>$ <b id="count_orderSum" ></b></h3>
                     <p>Earnings</p>
                 </div>
                 <div class="icon" style="top:-10px">
@@ -87,6 +87,7 @@
                     <li class="pull-left header"><i class="fa fa-cutlery"></i> Hawker Listings</li>
                 </ul>
               <!-- /.card-header -->
+              <div class= "tablescroll">
                 <table class="table table-hover text-nowrap">
         <thead>
         <tr>
@@ -104,6 +105,7 @@
    <td th:text="${hawkerlisting.stallNo}"></td>
  </tr>
 </table>
+</div>
               </div>
        
              
@@ -112,44 +114,43 @@
 
         </section>
     
-
-         
-        <!-- /.Left col -->
+<!-- /.Left col -->
         <!-- right col (We are only adding the ID to make the widgets sortable)-->
         <section class="col-lg-5 connectedSortable">
 
 
             <!-- <!-- solid sales graph -->
-            <div class="box box-solid bg-teal-gradient">
-                <div class="box-header">
+            <div class="box box-solid bg-pink-gradient">
+                <div class="box-header" style="color:#605ca8">
                     <i class="fa fa-th"></i>
 
-                    <h3 class="box-title">Monthly Income</h3>
+                    <h3 class="box-title">Monthly Orders</h3>
 
                     <div class="box-tools pull-right">
-                        <button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+                        <button type="button" class="btn bg-purple btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
                         </button>
-                        <button type="button" class="btn bg-teal btn-sm" data-widget="remove"><i class="fa fa-times"></i>
+                        <button type="button" class="btn bg-purple btn-sm" data-widget="remove"><i class="fa fa-times"></i>
                         </button>
                     </div>
                 </div>
                 <div class="box-body border-radius-none">
-                    <div class="chart" id="line-chart" style="height: 250px;"></div>
-                </div> -->
+                     <div id="orders" style="height: 250px;"></div>
+                </div>
                 <!-- /.box-body -->
 
             </div>
             <!-- /.box -->
 
         </section>
-        <!-- right col -->
-    </div>
+         
+           </div>
     <!-- /.row (main row) -->
     
-     <!-- Main row -->
+    
     <div class="row">
-        <!-- Left col -->
-        <section class="col-lg-7 connectedSortable">
+       <!-- /.Left col -->
+        <!-- right col (We are only adding the ID to make the widgets sortable)-->
+ <section class="col-lg-7 connectedSortable">
             <!-- Custom tabs (Charts with tabs)-->
             <div class="nav-tabs-custom">
                 <!-- Tabs within a box -->
@@ -157,7 +158,8 @@
                     <li class="pull-left header"><i class="fa fa-motorcycle"></i> Courier Listings</li>
                 </ul>
               <!-- /.card-header -->
-                <table class="table table-hover text-nowrap">
+              <div class="tablescroll">
+                <table class="table table-hover text-nowrap" >
         <thead>
         <tr>
             <th>Id</th>
@@ -169,6 +171,7 @@
         
         </tr>
         </thead>
+        <tbody style="max-height:5px; overflow-y:auto;">
              <tr th:each="courierlisting:${listCouriers}">
    <td th:text="${courierlisting.id}"></td> 
    <td th:text="${courierlisting.hawkerListing.id}"></td>
@@ -177,7 +180,9 @@
    <td th:text="${courierlisting.pickupTime}"></td>
    <td th:text="${courierlisting.pickupDate}"></td>
  </tr>
+ </tbody>
 </table>
+</div>
               </div>
        
              
@@ -185,20 +190,17 @@
             <!-- /.nav-tabs-custom -->
 
         </section>
-    
 
-         
-        <!-- /.Left col -->
-        <!-- right col (We are only adding the ID to make the widgets sortable)-->
-        <section class="col-lg-5 connectedSortable">
+        <!-- right col -->
+         <section class="col-lg-5 connectedSortable">
 
 
-            <!-- solid sales graph -->
-            <div class="box box-solid bg-teal-gradient">
+            <!-- <!-- solid sales graph -->
+            <div class="box box-solid bg-yellow-gradient">
                 <div class="box-header">
                     <i class="fa fa-th"></i>
 
-                    <h3 class="box-title">Monthly Income</h3>
+                    <h3 class="box-title">Monthly Earnings</h3>
 
                     <div class="box-tools pull-right">
                         <button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -208,7 +210,7 @@
                     </div>
                 </div>
                 <div class="box-body border-radius-none">
-                    <div class="chart" id="line-chart" style="height: 250px;"></div>
+                     <div id="bar-example" style="height: 250px;"></div>
                 </div>
                 <!-- /.box-body -->
 
@@ -216,15 +218,20 @@
             <!-- /.box -->
 
         </section>
-        <!-- right col -->
+         
+      
     </div>
-    <!-- /.row (main row) -->
+   
 </div>
-</div>
+
+
+
+
 
 
 <th:block layout:fragment="script">
 <script src="/dist/js/pages/dashboard.js"></script>
+<script src="/dist/js/pages/charts.js"></script>
 </th:block>
 </body>
 </html>

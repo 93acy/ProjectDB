@@ -211,6 +211,7 @@ $(document).ready(function() {
         hideHover: 'auto'
       });
     }
+    
   //Fix for charts under tabs
   $('.box ul.nav a').on('shown.bs.tab', function () {
     area.redraw();
@@ -245,16 +246,16 @@ $(document).ready(function() {
             $('#count_orderSum').text(data.count_orderSum);
 
             morisArea(data.areachart);
-            morisLine(data.line-chart);
+            morisLine(data.orderchart);
             morisDonut(data.donutchart);
+            
+
       });
   }
   getDashboardStatistics();
   
-   
+
   });//document.ready
-
-
 
 });
 

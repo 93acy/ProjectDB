@@ -8,6 +8,7 @@ html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
+      
 }
 body {
   margin: 0;
@@ -1083,7 +1084,7 @@ html {
 }
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.42857143;
   color: #333;
   background-color: #fff;
@@ -2295,6 +2296,7 @@ th {
 }
 .table .table {
   background-color: #fff;
+  
 }
 .table-condensed > thead > tr > th,
 .table-condensed > tbody > tr > th,
@@ -6757,5 +6759,11 @@ button.close {
   .hidden-print {
     display: none !important;
   }
+}
+
+div.tablescroll{
+	overflow-y:auto; 
+	max-height:273px;
+	
 }
 /*# sourceMappingURL=bootstrap.css.map */
