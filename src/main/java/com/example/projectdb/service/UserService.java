@@ -19,7 +19,7 @@ public interface UserService {
 	
 	public void saveUserOrderDetail(UserOrderDetail userOrderDetail);
 	
-	public void updateCourierListingId( Long userOrderId,Long courierListingId);
+	//public void updateCourierListingId( Long userOrderId,Long courierListingId);
 	
 	public void updateOrderIdAndCFID(Long userOrderId, Long courierFoodItemId,Long userOrderDetailId);
 

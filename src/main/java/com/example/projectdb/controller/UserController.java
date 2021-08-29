@@ -26,11 +26,8 @@ import com.example.projectdb.service.UserService;
 
 
 @RestController
-@RequestMapping("/user")
 public class UserController {
 
-//    @Autowired
-//    UserRepository userRepository;
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
@@ -51,7 +48,7 @@ public class UserController {
     @Autowired
     CourierFoodItemDetailService cfService;
 
-    @PostMapping("/register")
+    @PostMapping("/user/register")
     public ResponseEntity<String> registerUser(@RequestBody User newUser) {
         List<User> users = uService.findAll();
         System.out.println("New user: " + newUser.toString());
@@ -65,7 +62,7 @@ public class UserController {
         return new ResponseEntity<String>("Success", HttpStatus.CREATED);
     }
 
-    @PostMapping("/login")
+    @PostMapping("/user/login")
     public ResponseEntity<String> loginUser(@RequestBody User user) {
         List<User> users = uService.findAll();
         for (User other : users) {

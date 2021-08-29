@@ -11,7 +11,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.example.projectdb.model.UserOrder;
 
-public interface UserOrderService extends JpaRepository<UserOrder,Long> {
+public interface UserOrderService {
 	
 	public ArrayList<ArrayList<String>> getUserOrderId(Long userId);
 	
