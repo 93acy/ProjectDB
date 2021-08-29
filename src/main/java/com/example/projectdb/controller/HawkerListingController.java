@@ -8,6 +8,8 @@ import org.apache.tomcat.util.http.parser.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -43,11 +45,15 @@ public class HawkerListingController{
 
     @PostMapping("/add")
     public ResponseEntity<String> addHawkerListing(@RequestBody HawkerListing hawkerlisting){
-        String username = jwtTokenUtil.getUsernameFromToken(request.getHeader("Authorization").substring(7));
+//        String username = jwtTokenUtil.getUsernameFromToken(request.getHeader("Authorization").substring(7));
         //findIdbyUsername
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+
+        String username = userDetails.getUsername();
         if (!hrepo.hawkerNameExist(hawkerlisting.getName())){
         hlservice.addHawkerListing(hawkerlisting);
-        return new ResponseEntity<String>("Success", HttpStatus.CREATED);}
+        return new ResponseEntity<String>("success", HttpStatus.CREATED);}
         else{ return new ResponseEntity<String>("Not Successful", HttpStatus.BAD_REQUEST);}
     }
 
