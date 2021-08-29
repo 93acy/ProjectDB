@@ -1,6 +1,7 @@
 package com.example.projectdb.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -31,5 +32,9 @@ public interface UserOrderService {
 
 
 	public ArrayList<ArrayList<String>> findUserOrderFoodItemByUserOrderId(Long userOrderId);
+	
+	public List<List<String>> findByCourierListingId(Long id);
+	
+	public List<List<String>> findUserDetailsByCourierListingId(Long id);
 
 }

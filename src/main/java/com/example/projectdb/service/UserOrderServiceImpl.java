@@ -61,5 +61,13 @@ public class UserOrderServiceImpl implements UserOrderService {
 		public ArrayList<ArrayList<String>> findUserOrderFoodItemByUserOrderId(Long userOrderId){
 			return uorepo.findUserOrderFoodItemByUserOrderId(userOrderId);
 		}
+		
+		public List<List<String>> findByCourierListingId(Long id){
+			return uorepo.findByCourierListingId(id);
+		}
+		
+		public List<List<String>> findUserDetailsByCourierListingId(Long id){
+			return uorepo.findUserDetailsByCourierListingId(id);
+		}
 
 }

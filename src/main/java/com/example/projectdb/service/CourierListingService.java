@@ -28,6 +28,8 @@ public interface CourierListingService {
 	public void deletecourierListing(Long Id);
 	
 	public String findHawkerNameByCLid(Long courierListingId);
+	
+	public void updatecourierListing(Long Id);
 
 
 

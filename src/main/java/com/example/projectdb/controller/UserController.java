@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -43,7 +46,7 @@ public class UserController {
 
     @Autowired
     UserService uService;
-
+    
 
     @Autowired
     CourierFoodItemDetailService cfService;
@@ -99,7 +102,10 @@ public class UserController {
     @RequestMapping("/user/createOrder")
     public ResponseEntity<String> createUserOrder(@RequestBody UserOrder userOrder,
                                                   @RequestParam Long courierListngId) {
-    	String username = jwtTokenUtil.getUsernameFromToken(request.getHeader("Authorization").substring(7));
+    	UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+             String username = userDetails.getUsername();
+
         Long userId = uService.findIdByUsername(username);
 
         uService.saveUserOrder(userOrder);
@@ -171,22 +177,28 @@ public class UserController {
 
     @RequestMapping("/users/viewOrderData")
     public ResponseEntity<ArrayList<ArrayList<String>>> viewOrderDta(){
-    	 String username = jwtTokenUtil.getUsernameFromToken(request.getHeader("Authorization").substring(7));
+
+         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
+            .getPrincipal();
+         String username = userDetails.getUsername();
+
+    	 //String username = jwtTokenUtil.getUsernameFromToken(request.getHeader("Authorization").substring(7));
          Long userId = uService.findIdByUsername(username);
          
          ArrayList<ArrayList<String>> orderData =  uoService.getUserOrderId(userId);
-         ArrayList<String> hawkerName = new ArrayList<>();
+         String hawkerName = "";
          for(ArrayList<String> s:orderData) {
         	 for(int i=0;i<orderData.size();i++) {       		 
-        		 hawkerName.add(clService.findHawkerNameByCLid(Long.parseLong(s.get(1))));
-        		 orderData.add(hawkerName);
+        		 hawkerName=clService.findHawkerNameByCLid(Long.parseLong(s.get(1)));
+        		 s.add(hawkerName);
+        		
         	 }
          }
-
-         
+      
          return new ResponseEntity<ArrayList<ArrayList<String>>>(orderData, HttpStatus.OK);
     }
-    
+        
+
 }
    
 
