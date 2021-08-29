@@ -24,5 +24,6 @@ public interface CourierListingService {
 	//public void deletecourierListingFoodItem(Long ids);
 	public void deletecourierListingDetail(Long Id);
 	public void deletecourierListing(Long Id);
+	public void updatecourierListing(Long Id);
 
 }

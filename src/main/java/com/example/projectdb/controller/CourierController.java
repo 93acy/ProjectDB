@@ -25,6 +25,7 @@ import com.example.projectdb.service.CourierFoodItemDetailService;
 import com.example.projectdb.service.CourierListingService;
 import com.example.projectdb.service.FoodItemService;
 import com.example.projectdb.service.HawkerListingService;
+import com.example.projectdb.service.UserOrderService;
 
 @RestController
 
@@ -41,6 +42,9 @@ public class CourierController {
 	
 	@Autowired
 	FoodItemService fservice;
+	
+	@Autowired
+	UserOrderService uoservice;
 	
 	
 	
@@ -173,6 +177,37 @@ public class CourierController {
 		return new ResponseEntity<String>("successful", HttpStatus.OK);
 	}
 	
+	@RequestMapping("/courier/updateCourierListing")
+	public ResponseEntity<String> updateCourierListing(@RequestBody String id){
+		String a = id.substring(1,2);
+		long Id = Long.parseLong(a);
+
+		clservice.updatecourierListing(Id);
+		return new ResponseEntity<String>("successful", HttpStatus.OK);
+	}
+	
+	@RequestMapping("/courier/viewCourierListingDetails/{id}")
+	public ResponseEntity<List<List<String>>> viewCourierListingDetails(@PathVariable("id") String id){
+		long Id = Long.parseLong(id);
+		List<List<String>> userOrder =  uoservice.findByCourierListingId(Id);
+		//List<String> ids = new ArrayList<>();
+		//List<List<List<String>>> userOrderDetail = new ArrayList<>();
+		/*for(List<String> s : userOrder) {
+			ids.add(s.get(0));
+			List<List<String>> userOrderDetails = uoservice.findUserDetailsByCourierListingId(id);
+			userOrderDetail.add(userOrderDetails);
+		}*/
+		System.out.print("call 1--------------------------");
+		return new ResponseEntity<List<List<String>>>(userOrder, HttpStatus.OK);
+	}
+	
+	@RequestMapping("/courier/viewCourierListingDetailInfo/{id}")
+	public ResponseEntity<List<List<String>>> viewCourierListingDetailInfo(@PathVariable("id") String id){
+		long Id = Long.parseLong(id);
+		List<List<String>> userOrderDetails = uoservice.findUserDetailsByCourierListingId(Id);
+		System.out.print("call 2--------------------------");
+		return new ResponseEntity<List<List<String>>>(userOrderDetails, HttpStatus.OK);
+	}
 
 
 }

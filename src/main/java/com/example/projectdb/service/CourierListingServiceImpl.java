@@ -61,5 +61,8 @@ public class CourierListingServiceImpl implements CourierListingService{
 	public void deletecourierListing(Long Id) {
 		crepo.deletecourierListing(Id);
 	};
+	public void updatecourierListing(Long Id) {
+		crepo.updatecourierListing(Id);
+	}
 
 }
