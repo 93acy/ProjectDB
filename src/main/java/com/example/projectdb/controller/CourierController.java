@@ -7,6 +7,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,6 +28,7 @@ import com.example.projectdb.service.CourierListingService;
 import com.example.projectdb.service.FoodItemService;
 import com.example.projectdb.service.HawkerListingService;
 import com.example.projectdb.service.UserOrderService;
+import com.example.projectdb.service.UserService;
 
 @RestController
 
@@ -45,6 +48,9 @@ public class CourierController {
 	
 	@Autowired
 	UserOrderService uoservice;
+	
+	@Autowired
+	UserService uService;
 	
 	
 	
@@ -134,9 +140,15 @@ public class CourierController {
 	
 	@GetMapping("/courier/viewCourierListings")
 	public ResponseEntity<List<List<List<String>>>> viewCourierListings(){
+		
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
+				   .getPrincipal();
+		String username = userDetails.getUsername();
+		Long userId = uService.findIdByUsername(username);
 
-
-		List<Long> courierListingIds = clservice.findAllCourierListingId();
+		List<Long> courierListingIds = clservice.findCourierListingByUserId(userId);
+		
+		//List<Long> courierListingIds = clservice.findAllCourierListingId();
 
 		List<List<String>> courierListings = new ArrayList<>();
 		List<List<List<String>>> CourierListings = new ArrayList<>();
