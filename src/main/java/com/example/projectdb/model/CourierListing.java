@@ -26,7 +26,7 @@ public class CourierListing {
 	
 	
 	@ManyToOne
-	private Courier courier;
+	private User user;
 	
 	@ManyToOne
 	private HawkerListing hawkerListing;
@@ -92,13 +92,16 @@ public class CourierListing {
 		this.courierOrderStatus = courierOrderStatus;
 	}
 
-	public Courier getCourier() {
-		return courier;
+	
+	public User getUser() {
+		return user;
 	}
 
-	public void setCourier(Courier courier) {
-		this.courier = courier;
+
+	public void setUser(User user) {
+		this.user = user;
 	}
+
 
 	public HawkerListing getHawkerListing() {
 		return hawkerListing;

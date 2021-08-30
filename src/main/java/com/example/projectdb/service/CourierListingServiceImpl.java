@@ -69,6 +69,12 @@ public class CourierListingServiceImpl implements CourierListingService{
 		crepo.updatecourierListing(Id);
 	}
 
+	@Override
+	public void updateCourierId(Long userId, Long CourierListing) {
+		crepo.updateCourierId(userId, CourierListing);
+		
+	}
+
 	
 
 }
