@@ -42,7 +42,6 @@ public class CourierListing {
 	}
 
 
-
 	public Long getId() {
 		return id;
 	}
