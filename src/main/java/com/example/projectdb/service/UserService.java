@@ -30,6 +30,8 @@ public interface UserService {
 	public Integer getOrderQuantityById(Long userOrderDetailId);
 	
 	public Long findIdByUsername(String username);
+	
+
 
 
 }

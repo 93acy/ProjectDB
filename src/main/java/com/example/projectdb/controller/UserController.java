@@ -171,8 +171,18 @@ public class UserController {
 
     @RequestMapping("users/orders/orderStatus/update")
     public ResponseEntity<String> updateUserOrderStatus(@RequestParam("id") Long userOrderId, @RequestParam String status) {
-    	uoService.updateUserOrderStatus(userOrderId, status);
-        return new ResponseEntity<String>("SUCCESS", HttpStatus.CREATED);
+    	//String courierListingStatus = clSerivce.findCourierListingStatus(userOrderId);
+
+    	String UserOrderStatus = uoService.findUserOrderStatus(userOrderId);
+    	
+    	if(UserOrderStatus.equals("Pending")) {
+        	uoService.updateUserOrderStatus(userOrderId, status);     	
+            return new ResponseEntity<String>("SUCCESS", HttpStatus.CREATED);
+    	}
+    	else {
+    		return new ResponseEntity<String>("FAILED", HttpStatus.CREATED);
+    	}
+
     }
 
     @RequestMapping("/users/viewOrderData")
