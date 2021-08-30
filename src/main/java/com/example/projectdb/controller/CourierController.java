@@ -50,9 +50,9 @@ public class CourierController {
 	UserOrderService uoservice;
 	
 	@Autowired
-    UserService uService;
-	
-	
+	UserService uService;
+
+
 	
 //	@RequestMapping("/hawkerlisting/All")
 //	public ResponseEntity<ArrayList<ArrayList<String>>> selectHawker(){
@@ -115,7 +115,7 @@ public class CourierController {
 	public ResponseEntity<String> createCourierListing(@RequestBody CourierListing CourierListing,
 			@RequestParam ArrayList<String> courierFoodItemDetailIds,
 			@RequestParam ArrayList<String> FoodID){
-		
+
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
 	            .getPrincipal();
 	    String username = userDetails.getUsername();
@@ -147,8 +147,14 @@ public class CourierController {
 	@GetMapping("/courier/viewCourierListings")
 	public ResponseEntity<List<List<List<String>>>> viewCourierListings(){
 
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
+				   .getPrincipal();
+		String username = userDetails.getUsername();
+		Long userId = uService.findIdByUsername(username);
 
-		List<Long> courierListingIds = clservice.findAllCourierListingId();
+		List<Long> courierListingIds = clservice.findCourierListingByUserId(userId);
+
+		//List<Long> courierListingIds = clservice.findAllCourierListingId();
 
 		List<List<String>> courierListings = new ArrayList<>();
 		List<List<List<String>>> CourierListings = new ArrayList<>();

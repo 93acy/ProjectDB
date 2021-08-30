@@ -30,7 +30,9 @@ public interface CourierListingService {
 	public String findHawkerNameByCLid(Long courierListingId);
 	
 	public void updatecourierListing(Long Id);
-	
+
+	public List<Long> findCourierListingByUserId(Long userId);
+
 	public void updateCourierId(Long userId, Long CourierListing);
 
 
