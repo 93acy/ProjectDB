@@ -38,6 +38,9 @@ public class User {
 	private Double customerRating;
 	
 	@OneToMany(mappedBy="user",cascade=CascadeType.REMOVE)
+	private Collection<CourierListing> courierListings;
+	
+	@OneToMany(mappedBy="user",cascade=CascadeType.REMOVE)
 	private Collection<UserOrder> userOrders;
 
 	public User() {
@@ -177,6 +180,16 @@ public class User {
 	public void setUserOrders(Collection<UserOrder> userOrders) {
 		this.userOrders = userOrders;
 	}
+
+	public Collection<CourierListing> getCourierListings() {
+		return courierListings;
+	}
+
+	public void setCourierListings(Collection<CourierListing> courierListings) {
+		this.courierListings = courierListings;
+	}
+	
+	
 
 
 }

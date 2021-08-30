@@ -182,7 +182,6 @@ public class UserController {
             .getPrincipal();
          String username = userDetails.getUsername();
 
-    	 //String username = jwtTokenUtil.getUsernameFromToken(request.getHeader("Authorization").substring(7));
          Long userId = uService.findIdByUsername(username);
          
          ArrayList<ArrayList<String>> orderData =  uoService.getUserOrderId(userId);

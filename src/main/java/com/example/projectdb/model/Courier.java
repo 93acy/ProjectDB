@@ -23,8 +23,7 @@ public class Courier extends User{
 	private String vehicle;
 	private String bankAccNo;
 	
-	@OneToMany(mappedBy="courier",cascade=CascadeType.REMOVE)
-	private Collection<CourierListing> courierListings;
+
 
 	public Courier() {
 		super();
@@ -58,14 +57,6 @@ public class Courier extends User{
 
 	public void setBankAccNo(String bankAccNo) {
 		this.bankAccNo = bankAccNo;
-	}
-
-	public Collection<CourierListing> getCourierListings() {
-		return courierListings;
-	}
-
-	public void setCourierListings(Collection<CourierListing> courierListings) {
-		this.courierListings = courierListings;
 	}
 
     

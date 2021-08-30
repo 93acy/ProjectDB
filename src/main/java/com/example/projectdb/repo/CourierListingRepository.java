@@ -55,8 +55,13 @@ public interface CourierListingRepository extends JpaRepository<CourierListing, 
 	
 	@Modifying
 	@Transactional
-	@Query("UPDATE CourierListing c SET c.courierOrderStatus = 'close' WHERE c.id = :Id")
+	@Query("UPDATE CourierListing c SET c.courierOrderStatus = 'Close' WHERE c.id = :Id")
 	public void updatecourierListing(@Param("Id")Long Id);
+	
+	@Modifying
+	@Transactional
+	@Query(value="UPDATE courier_listing  SET user_id =:userId WHERE id = :CourierListing",nativeQuery=true)
+	public void updateCourierId(@Param("userId")Long userId, @Param("CourierListing") Long CourierListing);
 
 
 }
