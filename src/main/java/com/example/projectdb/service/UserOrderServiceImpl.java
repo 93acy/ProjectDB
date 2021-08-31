@@ -70,4 +70,9 @@ public class UserOrderServiceImpl implements UserOrderService {
 			return uorepo.findUserDetailsByCourierListingId(id);
 		}
 
+		@Override
+		public String findUserOrderStatus(Long userOrderId) {
+			return uorepo.findUserOrderStatus(userOrderId);
+		}
+
 }

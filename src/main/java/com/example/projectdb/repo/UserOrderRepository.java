@@ -126,6 +126,10 @@ public interface UserOrderRepository extends JpaRepository<UserOrder, Long> {
     
     @Query("SELECT ud.userOrder.id, ud.courierFoodItemDetails.foodItem.name, ud.quantity FROM UserOrderDetail ud WHERE ud.userOrder.id = :id")
     public List<List<String>> findUserDetailsByCourierListingId(@Param("id") Long id);
+    
+    @Query (value="select user_order_status from user_order where id=:id", nativeQuery=true)
+    public String findUserOrderStatus(@Param("id") Long userOrderId);
+
 
 
 

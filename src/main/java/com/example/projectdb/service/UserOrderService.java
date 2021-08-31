@@ -36,5 +36,7 @@ public interface UserOrderService {
 	public List<List<String>> findByCourierListingId(Long id);
 	
 	public List<List<String>> findUserDetailsByCourierListingId(Long id);
+	
+	 public String findUserOrderStatus(Long userOrderId);
 
 }

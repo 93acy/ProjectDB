@@ -15,7 +15,8 @@ import com.example.projectdb.model.CourierListing;
 public interface CourierListingRepository extends JpaRepository<CourierListing, Long> {
 	
 	@Query("select c.id,c.pickupTime,c.hawkerListing.name,c.hawkerListing.locationArea,"
-			+ "c.pickupLocation,c.orderBeforeTime,c.hawkerListing.id from CourierListing c where c.courierOrderStatus='Open'")
+			+ "c.pickupLocation,c.orderBeforeTime,c.hawkerListing.id,c.pickupDate "
+			+ "from CourierListing c where c.courierOrderStatus='Open'")
 	public ArrayList<ArrayList<String>> findCourierListing();
 	
 	@Query("SELECT cd.foodItem.id,cd.foodItem.name,cd.foodItem.category,cd.foodItem.description,cd.pricePerUnit,cd.id "
