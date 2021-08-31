@@ -179,8 +179,11 @@ public class CourierController {
 	
 	@RequestMapping("/courier/updateCourierListing")
 	public ResponseEntity<String> updateCourierListing(@RequestBody String id){
-		String a = id.substring(1,2);
-		long Id = Long.parseLong(a);
+		
+		String id1 = id.replace("\"","");
+		long Id = Long.parseLong(id1);
+		//String a = id.substring(1,2);
+		//long Id = Long.parseLong(a);
 
 		clservice.updatecourierListing(Id);
 		return new ResponseEntity<String>("successful", HttpStatus.OK);
